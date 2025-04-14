@@ -1,4 +1,4 @@
-defmodule Skygarden.Repo.Migrations.CreateUsersAuthTables do
+defmodule Skygarden.Repo.Migrations.CreateUserAuthTables do
   use Ecto.Migration
 
   def change do
@@ -7,7 +7,10 @@ defmodule Skygarden.Repo.Migrations.CreateUsersAuthTables do
     create table(:users) do
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
+      add :super_admin, :boolean, default: false
+      add :active, :boolean, default: true
       add :confirmed_at, :utc_datetime
+      add :role, :string, default: "admin"
 
       timestamps(type: :utc_datetime)
     end
