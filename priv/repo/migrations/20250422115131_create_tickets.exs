@@ -10,8 +10,8 @@ defmodule Skygarden.Repo.Migrations.CreateTickets do
       add :remaining_price, :float
       add :complimentary, :boolean, default: false, null: false
       add :quantity, :integer
-      add :ticketid, :string
-      add :transaction_id, :string
+      add :ticketid, :text
+      add :transaction_id, :text
       add :bnpl, :boolean, default: false, null: false
       add :event_id, references(:events, on_delete: :nothing)
       add :ticket_type_id, references(:ticket_types, on_delete: :nothing)
@@ -21,5 +21,6 @@ defmodule Skygarden.Repo.Migrations.CreateTickets do
 
     create index(:tickets, [:event_id])
     create index(:tickets, [:ticket_type_id])
+    create index(:tickets, [:transaction_id])
   end
 end
