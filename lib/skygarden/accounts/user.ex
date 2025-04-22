@@ -7,6 +7,10 @@ defmodule Skygarden.Accounts.User do
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true
+    field :super_admin, :boolean, default: false
+    field :active, :boolean, default: true
+    field :role, :string, default: "admin"
+
     field :confirmed_at, :utc_datetime
 
     timestamps(type: :utc_datetime)
