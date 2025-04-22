@@ -10,7 +10,6 @@ defmodule Skygarden.Accounts.User do
     field :super_admin, :boolean, default: false
     field :active, :boolean, default: true
     field :role, :string, default: "admin"
-
     field :confirmed_at, :utc_datetime
 
     timestamps(type: :utc_datetime)
@@ -46,6 +45,13 @@ defmodule Skygarden.Accounts.User do
     |> validate_password(opts)
   end
 
+  def create_changeset(changeset, attrs, opts \\ []) do
+    changeset
+    |> cast(attrs, [:email, :hashed_password, :super_admin, :active, :role])
+    |> validate_required([:email, :hashed_password, :super_admin, :active, :role])
+    |> validate_email(opts)
+  end
+
   defp validate_email(changeset, opts) do
     changeset
     |> validate_required([:email])
@@ -57,7 +63,7 @@ defmodule Skygarden.Accounts.User do
   defp validate_password(changeset, opts) do
     changeset
     |> validate_required([:password])
-    |> validate_length(:password, min: 12, max: 72)
+    |> validate_length(:password, min: 6, max: 72)
     # Examples of additional password validation:
     # |> validate_format(:password, ~r/[a-z]/, message: "at least one lower case character")
     # |> validate_format(:password, ~r/[A-Z]/, message: "at least one upper case character")
