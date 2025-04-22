@@ -15,5 +15,8 @@ defmodule Skygarden.Repo.Migrations.CreateReminders do
 
     create index(:reminders, [:ticket_id])
     create index(:reminders, [:event_id])
+    create index(:reminders, [:sent_via])
+    create index(:reminders, [:email])
+    create index(:reminders, [:phone_number])
   end
 end

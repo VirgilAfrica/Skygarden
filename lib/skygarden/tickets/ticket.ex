@@ -1,4 +1,5 @@
 defmodule Skygarden.Tickets.Ticket do
+  alias Skygarden.Tickets
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -20,7 +21,7 @@ defmodule Skygarden.Tickets.Ticket do
     # field :event_id, :id
     # field :ticket_type_id, :id
     belongs_to :event, Skygarden.Events.Event
-    belongs_to :ticket_type, Skygarden.Tickets.TicketType
+    belongs_to :ticket_type, Skygarden.TicketTypes.TicketType
 
     timestamps(type: :utc_datetime)
   end
@@ -129,7 +130,7 @@ defmodule Skygarden.Tickets.Ticket do
 
     phone_number = get_phone_number(formatted_phone_number)
 
-    case Tickets.get_bnpl_ticket_by_event_and_phone_number(
+    case Tickets.get_bnpl_tickets_for_event_and_phone_number(
       event_id,
       phone_number
       ) do

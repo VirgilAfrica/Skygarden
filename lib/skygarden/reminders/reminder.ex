@@ -7,8 +7,8 @@ defmodule Skygarden.Reminders.Reminder do
     field :sent_via, :string
     field :email, :string
     field :phone_number, :string
-    field :ticket_id, :id
-    field :event_id, :id
+    belongs_to :ticket, Skygarden.Tickets.Ticket
+    belongs_to :event, Skygarden.Events.Event
 
     timestamps(type: :utc_datetime)
   end
