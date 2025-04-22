@@ -6,6 +6,8 @@ defmodule Skygarden.Repo.Migrations.CreateTicketTypes do
       add :name, :string
       add :price, :float
       add :active, :boolean, default: false, null: false
+      add :complimentary, :boolean, default: false, null: false
+
       add :description, :text
       add :activate_on, :naive_datetime
       add :deactivate_on, :naive_datetime
@@ -20,5 +22,7 @@ defmodule Skygarden.Repo.Migrations.CreateTicketTypes do
 
     create index(:ticket_types, [:event_id])
     create index(:ticket_types, [:user_id])
+    create index(:ticket_types, [:active])
+    create index(:ticket_types, [:complimentary])
   end
 end
