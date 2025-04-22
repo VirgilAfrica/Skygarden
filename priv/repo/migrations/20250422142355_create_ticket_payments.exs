@@ -16,5 +16,10 @@ defmodule Skygarden.Repo.Migrations.CreateTicketPayments do
 
     create index(:ticket_payments, [:ticket_id])
     create index(:ticket_payments, [:event_id])
+    create index(:ticket_payments, [:payment_method])
+    create index(:ticket_payments, [:price])
+    create index(:ticket_payments, [:phone_number])
+    create index(:ticket_payments, [:email])
+    create index(:ticket_payments, [:transaction_id])
   end
 end

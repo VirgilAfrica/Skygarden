@@ -101,4 +101,9 @@ defmodule Skygarden.Tickets do
   def change_ticket(%Ticket{} = ticket, attrs \\ %{}) do
     Ticket.changeset(ticket, attrs)
   end
+
+  # This is a bnpl ticket for a phone number where someone has started paying for it
+  def get_bnpl_tickets_for_event_and_phone_number(nil, _phone_number) do
+    [1, 2, 3]
+  end
 end
