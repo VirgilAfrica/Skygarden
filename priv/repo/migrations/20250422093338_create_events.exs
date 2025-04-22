@@ -13,12 +13,13 @@ defmodule Skygarden.Repo.Migrations.CreateEvents do
       add :remind_time, :time
       add :slug, :text
       add :active, :boolean, default: false, null: false
-      add :remind_after, :integer
+      add :remind_after, :integer, default: 3
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps(type: :utc_datetime)
     end
 
     create index(:events, [:user_id])
+    create index(:events, [:slug])
   end
 end
