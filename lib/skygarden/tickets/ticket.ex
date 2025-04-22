@@ -17,8 +17,8 @@ defmodule Skygarden.Tickets.Ticket do
     field :bnpl, :boolean, default: false
     field :fully_paid, :boolean, default: false
     field :formatted_phone_number, :string, virtual: true
-    field :event_id, :id
-    field :ticket_type_id, :id
+    # field :event_id, :id
+    # field :ticket_type_id, :id
     belongs_to :event, Skygarden.Events.Event
     belongs_to :ticket_type, Skygarden.Tickets.TicketType
 

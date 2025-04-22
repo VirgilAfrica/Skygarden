@@ -3,7 +3,7 @@ defmodule Skygarden.Events.Event do
   import Ecto.Changeset
 
   schema "events" do
-    field :active, :boolean, default: false
+    field :active, :boolean, default: true
     field :name, :string
     field :date, :date
     field :description, :string
@@ -11,10 +11,11 @@ defmodule Skygarden.Events.Event do
     field :poster_image, :string
     field :start_time, :time
     field :end_time, :time
-    field :remind_time, :time
+    field :remind_time, :time, default: ~T[10:00:00]
     field :slug, :string
     field :remind_after, :integer, default: 3
-    field :user_id, :id
+    # field :user_id, :id
+    belongs_to :user, Skygarden.Accounts.User
 
     timestamps(type: :utc_datetime)
   end
