@@ -5,15 +5,17 @@ defmodule SkygardenWeb.Landing.LandingLayout do
       ~H"""
       <section class="w-full h-auto">
         <.hero_section/>
+        <.top_concerts/>
+
       </section>
       """
     end
 
     def hero_section(assigns) do
       ~H"""
-        <section class="w-full h-auto lg:h-screen relative overflow-hidden">
+        <section class="w-full h-[80vh] lg:h-screen relative overflow-hidden">
             <video
-              class="absolute top-0 left-0 w-full h-full object-cover z-0"
+              class="absolute top-0 left-0 w-full h-full  object-cover z-0"
               src="/images/landing/landing.mp4"
               autoplay
               loop
@@ -25,8 +27,28 @@ defmodule SkygardenWeb.Landing.LandingLayout do
             <div class="absolute top-40 z-40">
               <.latest_event_card/>
             </div>
-            </div>
+          </div>
         </section>
+      """
+    end
+
+    def top_concerts(assigns) do
+      ~H"""
+          <section class="w-full  mx-auto max-w-[90%] flex justify-between items-center">
+            <div class="w-full flex flex-col space-y-4 items-start justify-start py-8 md:py-12">
+              <div class="w-full flex flex-col lg:flex-row items-start justify-between">
+                <div class="flex flex-col space-y-2">
+                  <h1 class="flex space-y-2 text-[24px] md:text-[32px] font-bold">Top 10 concerts in Kenya today</h1>
+                  <p>Discover our handpicked top 10 concerts in Kenya events worth checking out</p>
+                </div>
+                <div class="flex items-center justify-center">
+                  <button class="text-blu">
+                  View all events
+                  </button>
+                </div>
+                </div>
+              </div>
+          </section>
       """
     end
 
@@ -58,8 +80,17 @@ defmodule SkygardenWeb.Landing.LandingLayout do
             <li class="text-blu flex space-x-2 cursor-pointer"><p class="underline underline-offset-4 hover:text-whit">Art</p></li>
             </ul>
           </div>
-
         </div>
       """
+    end
+
+    defp concert_images do
+      [
+        "/images/landing/concert1.jpg",
+        "/images/landing/concert2.jpg",
+        "/images/landing/concert3.jpg",
+        "/images/landing/concert4.jpg",
+        "/images/landing/concert5.jpg"
+      ]
     end
   end
