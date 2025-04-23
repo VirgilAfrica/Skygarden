@@ -4,8 +4,8 @@ defmodule Skygarden.EventPosters.EventPoster do
 
   schema "event_posters" do
     field :image, :string
-    field :user_id, :id
-    field :event_id, :id
+    belongs_to :user, Skygarden.Accounts.User
+    belongs_to :event, Skygarden.Events.Event
 
     timestamps(type: :utc_datetime)
   end
@@ -13,7 +13,7 @@ defmodule Skygarden.EventPosters.EventPoster do
   @doc false
   def changeset(event_poster, attrs) do
     event_poster
-    |> cast(attrs, [:image])
-    |> validate_required([:image])
+    |> cast(attrs, [:image,:user_id, :event_id])
+    |> validate_required([:image, :user_id, :event_id])
   end
 end
