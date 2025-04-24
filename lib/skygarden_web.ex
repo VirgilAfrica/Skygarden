@@ -90,6 +90,8 @@ defmodule SkygardenWeb do
       # Core UI components
       import SkygardenWeb.CoreComponents
       import SkygardenWeb.Landing.LandingLayout
+      import SkygardenWeb.Common.FooterComponent
+      import SkygardenWeb.Common.NavbarComponent
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
