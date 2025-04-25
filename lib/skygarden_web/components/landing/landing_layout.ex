@@ -18,22 +18,70 @@ defmodule SkygardenWeb.Landing.LandingLayout do
 
     def hero_section(assigns) do
       ~H"""
-        <section class="w-full h-[80vh] lg:h-screen relative overflow-hidden">
+        <section class="hidden dark:block dark:w-full dark:h-[80vh] dark:lg:h-screen dark:relative dark:overflow-hidden">
             <video
-              class="absolute top-0 left-0 w-full h-full  object-cover z-0"
+              class="dark:absolute dark:top-0 dark:left-0 dark:w-full dark:h-full  dark:object-cover dark:z-0"
               src="/images/landing/landing.mp4"
               autoplay
               loop
               muted
               playsinline
             ></video>
-            <div class="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
-            <div class="max-w-[90%] mx-auto relative z-20">
-            <div class="absolute top-64 md:top-56 lg:top-40 z-40">
+            <div class=" dark:absolute dark:top-0 dark:left-0 dark:w-full dark:h-full dark:bg-black/50 dark:z-10"></div>
+            <div class="dark:max-w-[90%] dark:mx-auto dark:relative dark:z-20">
+            <div class="dark:absolute dark:top-64 dark:md:top-56 dark:lg:top-40 dark:z-40">
               <.latest_event_card/>
             </div>
           </div>
         </section>
+
+        <section class="dark:hidden flex flex-col lg:flex-row items-start justify-between w-full h-auto lg:h-screen bg-[#5D3FD31A] px-4 py-8">
+  <div class="max-w-[90%] mx-auto flex flex-col lg:flex-row items-start justify-between w-full space-y-8 lg:space-y-0 lg:space-x-12">
+
+    <div class="w-full lg:w-1/2 flex flex-col space-y-6">
+      <span class="inline-block py-2 px-4 bg-blue-200 rounded-full max-w-max">
+        <p class="text-[10px] md:text-[12px] text-[#5D3FD3] font-medium">Discover Events</p>
+      </span>
+
+      <h1 class="text-[32px] md:text-[56px] font-bold leading-tight">Find your next experience.</h1>
+
+      <p class="text-[16px] md:text-[18px] max-w-md">
+        Discover our handpicked top 10 concerts in Kenya events worth checking out
+      </p>
+
+      <div class="flex  md:flex-row space-x-4  sm:space-y-0 w-full max-w-md ">
+        <div class="relative flex-grow">
+          <input
+            type="text"
+            placeholder="Search Events, venue or artists"
+            class="w-full rounded-full p-4  placeholder:text-blue-300 placeholder:text-[12px] md:placeholder:text-[16px] bg-transparent border border-gray-300 caret-blue-700 focus:outline-2 focus:outline-blue-300"
+          />
+          <span class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-blue-300">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <button class="bg-blue-700 text-white md:px-6 md:py-3 rounded-full font-semibold text-[12px] md:text-[16px] px-4 py-2 lg:px-8 lg:py-4">
+          Search
+        </button>
+      </div>
+
+      <div class="flex flex-col space-y-2">
+        <h4 class="font-medium text-black">Popular Categories:</h4>
+        <ul class="flex flex-wrap space-x-4 text-blue-500">
+          <li class="cursor-pointer underline underline-offset-4 hover:text-white">Music</li>
+          <li class="cursor-pointer underline underline-offset-4 hover:text-white">Technology</li>
+          <li class="cursor-pointer underline underline-offset-4 hover:text-white">Concert</li>
+          <li class="cursor-pointer underline underline-offset-4 hover:text-white">Art</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-1/2 flex justify-center items-center">
+       <.hero_event_card/>
+    </div>
+  </div>
+</section>
+
       """
     end
 
@@ -266,6 +314,37 @@ defmodule SkygardenWeb.Landing.LandingLayout do
           <div  class="text-black flex flex-row justify-between items-start">
             <h4 class="font-medium">{@event.price} </h4>
             <button class="text-blu">View Details</button>
+          </div>
+      </div>
+    </div>
+    """
+  end
+
+  def hero_event_card(assigns)do
+    ~H"""
+    <div class="rounded-t-2xl bg-white w-full h-fit shadow-sm">
+      <div class="relative bg-cover bg-center h-64 rounded-t-2xl" style="background-image: url('/images/landing/concert1.png');">
+        <div class="absolute rounded-t-2xl h-fit top-0 left-0 w-full h-full bg-black z-20"></div>
+        <span class="absolute bg-blue-100 top-4 left-4 text-blu rounded-full p-2">
+        <p class="font-medium text-[12px]">Upcoming</p>
+        </span>
+        <p class="absolute left-4 top-[80%] text-whit font-bold">Summer Music Festival 2025</p>
+
+      </div>
+      <div class="max-w-[90%] mx-auto flex flex-col space-y-3 p-4">
+      <span  class="text-black flex flex-row space-x-2 items-center">
+            <%!-- fontawesome icon --%>
+            <i class="fa-solid fa-calendar-days text-black"></i>
+            <p class="font-medium">Apr 04, 2025 · 12:00 PM </p>
+          </span>
+          <span  class="items-center text-black flex flex-row space-x-2">
+            <%!-- fontawesome icon --%>
+            <i class="fa-solid fa-map-pin text-black"></i>
+            <p class="font-medium">Central Park, Nairobi </p>
+          </span>
+          <div  class="text-black flex flex-row justify-between items-center">
+            <h4 class="font-medium">KES 1,500 </h4>
+            <button class="bg-blu text-white px-4 py-2 rounded-md">Get Ticket</button>
           </div>
       </div>
     </div>
