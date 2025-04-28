@@ -36,51 +36,51 @@ defmodule SkygardenWeb.Landing.LandingLayout do
         </section>
 
         <section class="dark:hidden flex flex-col lg:flex-row items-start justify-between w-full h-auto lg:h-screen bg-[#5D3FD31A] px-4 py-8">
-  <div class="max-w-[90%] mx-auto flex flex-col lg:flex-row items-start justify-between w-full space-y-8 lg:space-y-0 lg:space-x-12">
+            <div class="max-w-[90%] mx-auto flex flex-col lg:flex-row items-start justify-between w-full space-y-8 lg:space-y-0 lg:space-x-12">
 
-    <div class="w-full lg:w-1/2 flex flex-col space-y-6">
-      <span class="inline-block py-2 px-4 bg-blue-200 rounded-full max-w-max">
-        <p class="text-[10px] md:text-[12px] text-[#5D3FD3] font-medium">Discover Events</p>
-      </span>
+              <div class="w-full lg:w-1/2 flex flex-col space-y-6">
+                <span class="inline-block py-2 px-4 bg-blue-200 rounded-full max-w-max">
+                  <p class="text-[10px] md:text-[12px] text-[#5D3FD3] font-medium">Discover Events</p>
+                </span>
 
-      <h1 class="text-[32px] md:text-[56px] font-bold leading-tight">Find your next experience.</h1>
+                <h1 class="text-[32px] md:text-[56px] font-bold leading-tight">Find your next experience.</h1>
 
-      <p class="text-[16px] md:text-[18px] max-w-md">
-        Discover our handpicked top 10 concerts in Kenya events worth checking out
-      </p>
+                <p class="text-[16px] md:text-[18px] max-w-md">
+                  Discover our handpicked top 10 concerts in Kenya events worth checking out
+                </p>
 
-      <div class="flex  md:flex-row space-x-4  sm:space-y-0 w-full max-w-md ">
-        <div class="relative flex-grow">
-          <input
-            type="text"
-            placeholder="Search Events, venue or artists"
-            class="w-full rounded-full p-4  placeholder:text-blue-300 placeholder:text-[12px] md:placeholder:text-[16px] bg-transparent border border-gray-300 caret-blue-700 focus:outline-2 focus:outline-blue-300"
-          />
-          <span class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-blue-300">
-            <i class="fas fa-search"></i>
-          </span>
-        </div>
-        <button class="bg-blue-700 text-white md:px-6 md:py-3 rounded-full font-semibold text-[12px] md:text-[16px] px-4 py-2 lg:px-8 lg:py-4">
-          Search
-        </button>
-      </div>
+                <div class="flex  md:flex-row space-x-4  sm:space-y-0 w-full max-w-md ">
+                  <div class="relative flex-grow">
+                    <input
+                      type="text"
+                      placeholder="Search Events, venue or artists"
+                      class="w-full rounded-full p-4  placeholder:text-blue-300 placeholder:text-[12px] md:placeholder:text-[16px] bg-transparent border border-gray-300 caret-blue-700 focus:outline-2 focus:outline-blue-300"
+                    />
+                    <span class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-blue-300">
+                      <i class="fas fa-search"></i>
+                    </span>
+                  </div>
+                  <button class="bg-blue-700 text-white md:px-6 md:py-3 rounded-full font-semibold text-[12px] md:text-[16px] px-4 py-2 lg:px-8 lg:py-4">
+                    Search
+                  </button>
+                </div>
 
-      <div class="flex flex-col space-y-2">
-        <h4 class="font-medium text-black">Popular Categories:</h4>
-        <ul class="flex flex-wrap space-x-4 text-blue-500">
-          <li class="cursor-pointer underline underline-offset-4 hover:text-white">Music</li>
-          <li class="cursor-pointer underline underline-offset-4 hover:text-white">Technology</li>
-          <li class="cursor-pointer underline underline-offset-4 hover:text-white">Concert</li>
-          <li class="cursor-pointer underline underline-offset-4 hover:text-white">Art</li>
-        </ul>
-      </div>
-    </div>
+                <div class="flex flex-col space-y-2">
+                  <h4 class="font-medium text-black">Popular Categories:</h4>
+                  <ul class="flex flex-wrap space-x-4 text-blue-500">
+                    <li class="cursor-pointer underline underline-offset-4 hover:text-white">Music</li>
+                    <li class="cursor-pointer underline underline-offset-4 hover:text-white">Technology</li>
+                    <li class="cursor-pointer underline underline-offset-4 hover:text-white">Concert</li>
+                    <li class="cursor-pointer underline underline-offset-4 hover:text-white">Art</li>
+                  </ul>
+                </div>
+              </div>
 
-    <div class="w-full lg:w-1/2 flex justify-center items-center">
-       <.hero_event_card/>
-    </div>
-  </div>
-</section>
+              <div class="w-full lg:w-1/2 flex justify-center items-center">
+                <.hero_event_card/>
+              </div>
+            </div>
+      </section>
 
       """
     end
@@ -158,6 +158,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
           </section>
       """
     end
+    
     def top_conferences(assigns) do
       ~H"""
           <section class="w-full  mx-auto max-w-[90%] flex flex-col justify-between items-center ">

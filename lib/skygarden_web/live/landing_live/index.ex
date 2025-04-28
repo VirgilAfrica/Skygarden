@@ -11,10 +11,11 @@ defmodule SkygardenWeb.LandingLive.Index do
   }
   end
 
+
   @impl true
   def render(assigns) do
     ~H"""
-    <.navbar/>
+    <.navbar />
     <.landing_layout/>
     <.footer/>
     """
