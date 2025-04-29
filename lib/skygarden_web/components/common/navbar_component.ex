@@ -30,13 +30,13 @@ defmodule SkygardenWeb.Common.NavbarComponent do
             <li><a href="/upcoming" class="text-black hover:text-blue-500 block px-4 py-2 dark:text-white  ">Resources</a></li>
           </ul>
           <div class="lg:hidden flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 w-full md:w-auto">
-            <a href="/create_event" class="hover:text-blue-500 font-bold text-blue-700 border-[1px] border-blue-700 rounded-md px-4 py-2 text-blue-300 dark:hover:text-white dark:hover:border-white transition">Create Event</a>
-            <a href="/register" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 font-bold">Sign In</a>
+            <a href="/admin/create_event" class="hover:text-blue-500 font-bold text-blue-700 border-[1px] border-blue-700 rounded-md px-4 py-2 text-blue-300 dark:hover:text-white dark:hover:border-white transition">Create Event</a>
+            <a href="/users/register" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 font-bold">Sign In</a>
           </div>
         </div>
         <div class="hidden lg:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 w-full md:w-auto">
-            <a href="/login" class=" hover:text-blue-500 font-bold text-blue-700 border-[1px] border-blue-700 rounded-md px-4 py-2 dark:hover:text-white dark:hover:border-white transition">Create Event</a>
-            <a href="/register" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 font-bold">Sign In</a>
+            <a href="/admin/create_event" class=" hover:text-blue-500 font-bold text-blue-700 border-[1px] border-blue-700 rounded-md px-4 py-2 dark:hover:text-white dark:hover:border-white transition">Create Event</a>
+            <a href="/users/register" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 font-bold">Sign In</a>
           </div>
       </div>
     </nav>

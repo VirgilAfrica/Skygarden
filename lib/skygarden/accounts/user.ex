@@ -14,6 +14,9 @@ defmodule Skygarden.Accounts.User do
 
     field :first_name, :string
     field :second_name, :string
+    field :organization_name, :string
+    field :password_confirmation, :string, virtual: true
+
 
     timestamps(type: :utc_datetime)
   end
@@ -41,24 +44,28 @@ defmodule Skygarden.Accounts.User do
       submitting the form), this option can be set to `false`.
       Defaults to `true`.
   """
-  def registration_changeset(user, attrs, opts \\ []) do
-    user
-    |> cast(attrs, [:email, :password, :first_name, :second_name])
-    |> validate_email(opts)
-    |> validate_password(opts)
-    |> validate_required([:first_name, :second_name])
-    |> validate_length(:first_name, min: 2, max: 20)
-    |> validate_length(:second_name, min: 2, max: 20)
+ def registration_changeset(user, attrs, opts \\ []) do
+  user
+  |> cast(attrs, [:email, :password, :password_confirmation, :first_name, :second_name, :organization_name])
+  |> validate_email(opts)
+  |> validate_required([:first_name, :second_name, :organization_name])
+  |> validate_length(:first_name, min: 2, max: 20)
+  |> validate_length(:second_name, min: 2, max: 20)
+  |> validate_length(:organization_name, min: 3, max: 20)
+  |> validate_password(opts)
+  |> validate_confirmation(:password, message: "does not match password")
+end
 
-  end
 
   def create_changeset(changeset, attrs, opts \\ []) do
     changeset
-    |> cast(attrs, [:email, :hashed_password, :super_admin, :active, :role, :first_name, :second_name])
-    |> validate_required([:email, :hashed_password, :super_admin, :active, :role, :first_name, :second_name])
+    |> cast(attrs, [:email, :hashed_password, :super_admin, :active, :role, :first_name, :second_name,:password_confirmation, :organization_name])
+    |> validate_required([:email, :hashed_password, :super_admin, :active, :role, :first_name, :second_name, :organization_name])
     |> validate_email(opts)
     |> validate_length(:first_name, min: 2, max: 20)
     |> validate_length(:second_name, min: 2, max: 20)
+    |> validate_length(:organization_name, min: 3, max: 20)
+
   end
 
   defp validate_email(changeset, opts) do

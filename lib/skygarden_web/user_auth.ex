@@ -36,6 +36,7 @@ defmodule SkygardenWeb.UserAuth do
     |> redirect(to: user_return_to || signed_in_path(conn))
   end
 
+
   defp maybe_write_remember_me_cookie(conn, token, %{"remember_me" => "true"}) do
     put_resp_cookie(conn, @remember_me_cookie, token, @remember_me_options)
   end
@@ -226,4 +227,6 @@ defmodule SkygardenWeb.UserAuth do
   defp maybe_store_return_to(conn), do: conn
 
   defp signed_in_path(_conn), do: ~p"/"
+
+
 end

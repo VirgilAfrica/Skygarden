@@ -20,8 +20,8 @@ defmodule SkygardenWeb.Router do
   scope "/", SkygardenWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    live "/landing", LandingLive.Index, :index
+    # get "/", PageController, :home
+    live "/", LandingLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
