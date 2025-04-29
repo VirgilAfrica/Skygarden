@@ -49,6 +49,14 @@ defmodule SkygardenWeb do
       unquote(verified_routes())
     end
   end
+  def admin_live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {SkygardenWeb.Layouts, :admin}
+
+      unquote(html_helpers())
+    end
+  end
 
   def live_view do
     quote do

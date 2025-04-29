@@ -3,7 +3,7 @@ defmodule SkygardenWeb.Common.FooterComponent do
 
   def footer(assigns)do
     ~H"""
-    <footer class="bg-black text-white  h-auto py-8 lg:py-12 flex flex-col">
+    <footer class=" dark:bg-black text-black dark:text-white  h-auto py-8 lg:py-12 flex flex-col">
       <div class="max-w-[90%] mx-auto flex flex-col lg:flex-row items-start justify-between gap-8 " >
         <div class="flex flex-col w-full lg:w-1/2 space-y-8">
         <h2 class="font-bold text-blue-500 text-[16px] lg:text-[18px]">SKY Tickets</h2>
@@ -41,7 +41,7 @@ defmodule SkygardenWeb.Common.FooterComponent do
         </div>
         </div>
       </div>
-      <div class="border-t-2 border-white w-full py-4 mt-8 lg:mt-12 lg:py-8">
+      <div class="border-t-2 dark:border-white w-full py-4 mt-8 lg:mt-12 lg:py-8">
         <div class="flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-start justify-between w-full max-w-[90%] mx-auto">
         <p class="text-[14px] md:text-[16px]">Sky Ticket. All rights reserved</p>
         <ul class="flex flex-row space-x-4">
