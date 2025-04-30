@@ -158,7 +158,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
           </section>
       """
     end
-    
+
     def top_conferences(assigns) do
       ~H"""
           <section class="w-full  mx-auto max-w-[90%] flex flex-col justify-between items-center ">
@@ -428,7 +428,11 @@ defmodule SkygardenWeb.Landing.LandingLayout do
         time: "12:00 PM",
         location: "Central Park, Nairobi",
         price: "KES 1,500.00",
-        image: "/images/landing/concert1.png"
+        image: "/images/landing/concert1.png",
+        detail_title: "",
+        desccription: "",
+        
+
       },
       %{
         tag: "Entertainment",

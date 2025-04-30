@@ -8,6 +8,7 @@ defmodule SkygardenWeb.Admin.AdminComponent do
     <.dashboard/>
     <.analytics_card/>
     <.sales_analytics/>
+    <.recent_orders/>
       <%!-- <.create_event/> --%>
       </div>
     </section>
@@ -23,7 +24,7 @@ defmodule SkygardenWeb.Admin.AdminComponent do
             <h1 class="text-[32px] md:text-[40px] font-bold ">Manage Ticket Sales</h1>
             <p class="text-[16px] md:text-[18px]">Track and manage sales for Summer Music Festival 2025 </p>
           </div>
-          <div class="flex flex-col md:flex-row space-x-4">
+          <div class="flex flex-row md:flex-row space-x-4">
             <button class="px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 border-blue-700 text-blue-600 border-2 rounded-md cursor-pointer font-bold">
             <i class="fas fa-download w-4 h-4"></i>
             Export
@@ -36,14 +37,13 @@ defmodule SkygardenWeb.Admin.AdminComponent do
             </button>
           </div>
         </header>
-        <div class="flex flex-col md:flex-row items-center justify-between w-full text-white border-[1px] rounded-xl p-4">
-          <div class="flex  space-x-2 items-center justify-center">
+        <div class="flex flex-row md:flex-row items-center justify-between w-full text-white border-[1px] rounded-xl p-4">
+          <div class="flex  space-x-2 items-center justify-center ">
             <i class="fas fa-filter"></i>
             <p class="font-bold ">Filters</p>
           </div>
           <div>
           <div class="flex flex-wrap gap-4 items-center ">
-
           <div class="relative inline-block text-left">
             <div id="category-toggle" class="border-[1px] rounded-xl font-bold p-2 cursor-pointer flex items-center justify-between">
               <span id="selected-category">Category: All</span>
@@ -90,7 +90,6 @@ defmodule SkygardenWeb.Admin.AdminComponent do
         </div>
           </div>
         </div>
-
       </div>
     </section>
     """
@@ -156,7 +155,7 @@ defmodule SkygardenWeb.Admin.AdminComponent do
 
   def sales_analytics(assigns)do
     ~H"""
-    <section class="border-2 border-white px-4 h-screen rounded-sm border-[1px]">
+    <section class="border-2 border-white px-4 h-auto rounded-sm border-[1px]">
       <div class="mx-auto flex flex-col space-y-4">
         <div class="flex flex-col space-y-4 py-8 lg:py-12">
           <header class="flex flex-col lg:flex-row items-start justify-between text-white">
@@ -178,10 +177,123 @@ defmodule SkygardenWeb.Admin.AdminComponent do
             </div>
           </div>
         </div>
+        <div class="text-white py-8 lg:py-12">
+          <table class="w-full table-auto">
+            <thead class="text-white">
+              <tr>
+                <th scope="col" class="w-4/12 text-start px-4 py-3">Ticket Type</th>
+                <th scope="col" class="w-2/12 text-start px-4 py-3">Price</th>
+                <th scope="col" class="w-2/12 text-start px-4 py-3">Sold</th>
+                <th scope="col" class="w-2/12 text-start px-4 py-3">Available</th>
+                <th scope="col" class="w-2/12 text-start px-4 py-3">Revenue</th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-700">
+              <tr class="hover:bg-gray-900 transition-all duration-150">
+                <th scope="row" class="text-start font-light px-4 py-4">General Admission</th>
+                <td class="px-4 py-4">Kes 500</td>
+                <td class="px-4 py-4">78</td>
+                <td class="px-4 py-4">4,922</td>
+                <td class="px-4 py-4">Kes 250,000.00</td>
+              </tr>
+
+              <tr class="hover:bg-gray-900 transition-all duration-150">
+                <th scope="row" class="text-start font-light px-4 py-4">VIP</th>
+                <td class="px-4 py-4">Kes 1,500</td>
+                <td class="px-4 py-4">120</td>
+                <td class="px-4 py-4">3,880</td>
+                <td class="px-4 py-4">Kes 600,000.00</td>
+              </tr>
+
+              <tr class="hover:bg-gray-900 transition-all duration-150">
+                <th scope="row" class="text-start font-light px-4 py-4">Backstage</th>
+                <td class="px-4 py-4">Kes 5,000</td>
+                <td class="px-4 py-4">12</td>
+                <td class="px-4 py-4">388</td>
+                <td class="px-4 py-4">Kes 60,000.00</td>
+              </tr>
+
+              <tr class="hover:bg-gray-900 transition-all duration-150">
+                <th scope="row" class="text-start font-bold px-4 py-4">Total</th>
+                <td class="px-4 py-4">Kes 5,000</td>
+                <td class="px-4 py-4">12</td>
+                <td class="px-4 py-4">388</td>
+                <td class="px-4 py-4 font-bold">Kes 60,000.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       </section>
     """
   end
+
+  def recent_orders(assigns) do
+    ~H"""
+    <section class="w-full">
+      <div class="w-full text-start">
+        <header class="flex flex-col lg:flex-row items-start justify-between text-white">
+          <div class="flex flex-col space-y-4">
+            <h1 class="text-[32px] md:text-[40px] font-bold">Recent Orders</h1>
+          </div>
+        </header>
+      </div>
+
+      <div class="w-full text-white py-8 lg:py-12">
+        <table class="w-full table-auto border-separate border-spacing-y-2">
+          <thead class="text-white">
+            <tr>
+              <th class="w-3/12 text-start px-4 py-3">Order ID</th>
+              <th class="w-3/12 text-start px-4 py-3">Customer</th>
+              <th class="w-2/12 text-start px-4 py-3">Date</th>
+              <th class="w-1/12 text-start px-4 py-3">Tickets</th>
+              <th class="w-2/12 text-start px-4 py-3">Amount</th>
+              <th class="w-1/12 text-start px-4 py-3">Status</th>
+              <th class="w-1/12 text-start px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-gray-700">
+            <tr class="hover:bg-gray-900 transition-all duration-150">
+              <th class="text-start font-light px-4 py-4">GA-0093</th>
+              <td class="px-4 py-4">Kevin Kiarie</td>
+              <td class="px-4 py-4">Apr 25</td>
+              <td class="px-4 py-4">2</td>
+              <td class="px-4 py-4">KES 1,000</td>
+              <td class="px-4 py-4 text-center">
+                <span class="bg-green-800 text-white rounded-full px-4 py-2 text-[12px] font-bold block text-center">
+                  Completed
+                </span>
+              </td>
+              <td class="px-4 py-4 text-center">
+                <div class="relative inline-block text-left">
+                  <button class="text-white hover:text-gray-400">
+                    <i class="fas fa-ellipsis-v flex items-center justify-center"></i>
+                  </button>
+                  <div class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-xl shadow-lg">
+                    <ul class="py-2 text-sm text-gray-700">
+                      <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">View</li>
+                      <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">Cancel</li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+        <div class="w-full text-center py-4">
+          <button class="border-blue-700 text-blue-700 hover:text-white border-2 font-bold rounded-md px-6 py-3 duration-300 ease-in hover:bg-blue-700">
+            View All Orders
+          </button>
+        </div>
+      </div>
+    </section>
+    """
+  end
+
 
   def create_event(assigns)do
     ~H"""
@@ -207,6 +319,5 @@ defmodule SkygardenWeb.Admin.AdminComponent do
     </section>
     """
   end
-
 
 end

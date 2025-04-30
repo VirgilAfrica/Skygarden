@@ -101,3 +101,38 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDropdown("price-toggle", "price-dropdown", "selected-price");
   setupDropdown("sort-toggle", "sort-dropdown", "selected-sort");
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Toggle dropdown menu
+  document.querySelectorAll(".fa-ellipsis-v").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      // Close all other dropdowns first
+      document.querySelectorAll(".fa-ellipsis-v")
+        .forEach(otherBtn => {
+          if (otherBtn !== btn) {
+            const otherDropdown = otherBtn.closest(".relative").querySelector("div:not(.fa-ellipsis-v)");
+            if (otherDropdown) {
+              otherDropdown.classList.add("hidden");
+            }
+          }
+        });
+
+      const dropdown = btn.closest(".relative").querySelector("div:not(.fa-ellipsis-v)");
+      if (dropdown) {
+        dropdown.classList.toggle("hidden");
+      }
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".fa-ellipsis-v").forEach((btn) => {
+      const dropdown = btn.closest(".relative").querySelector("div:not(.fa-ellipsis-v)");
+      if (dropdown && !dropdown.classList.contains("hidden")) {
+        dropdown.classList.add("hidden");
+      }
+    });
+  });
+});
