@@ -69,6 +69,11 @@ defmodule SkygardenWeb.Router do
       on_mount: [{SkygardenWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+
+      scope "/admin" do
+        live "/dashboard", AdminLive.Index, :index
+        # live "/events/new", 
+      end
     end
   end
 
