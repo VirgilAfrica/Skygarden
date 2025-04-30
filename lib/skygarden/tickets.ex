@@ -107,17 +107,14 @@ defmodule Skygarden.Tickets do
     [1, 2, 3]
   end
 
-  
-
-    # This is a bnpl ticket for a phone number where someone has started paying for it
-    def get_bnpl_tickets_for_event_and_phone_number(event_id, phone_number) do
-      from(t in Ticket,
-        where:
-          t.event_id == ^event_id and t.phone_number == ^phone_number and t.bnpl == true and
-            t.remaining_price != t.total_price,
-        select: t
-      )
-      |> Repo.all()
-    end
-
+  # This is a bnpl ticket for a phone number where someone has started paying for it
+  def get_bnpl_tickets_for_event_and_phone_number(event_id, phone_number) do
+    from(t in Ticket,
+      where:
+        t.event_id == ^event_id and t.phone_number == ^phone_number and t.bnpl == true and
+          t.remaining_price != t.total_price,
+      select: t
+    )
+    |> Repo.all()
+  end
 end

@@ -13,7 +13,7 @@ defmodule Skygarden.EventPosters.EventPoster do
   @doc false
   def changeset(event_poster, attrs) do
     event_poster
-    |> cast(attrs, [:image,:user_id, :event_id])
+    |> cast(attrs, [:image, :user_id, :event_id])
     |> validate_required([:image, :user_id, :event_id])
   end
 end

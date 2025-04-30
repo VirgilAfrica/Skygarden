@@ -22,6 +22,7 @@ defmodule SkygardenWeb.Router do
 
     get "/", PageController, :home
     live "/landing", LandingLive.Index, :index
+    live "/events", BrowseventsLive.Index,:index
   end
 
   # Other scopes may use custom stacks.
@@ -81,6 +82,10 @@ defmodule SkygardenWeb.Router do
       on_mount: [{SkygardenWeb.UserAuth, :mount_current_user}] do
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
+
+      scope "/", SkygardenWeb do
+
+      end
     end
   end
 end

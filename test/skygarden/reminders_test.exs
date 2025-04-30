@@ -21,7 +21,12 @@ defmodule Skygarden.RemindersTest do
     end
 
     test "create_reminder/1 with valid data creates a reminder" do
-      valid_attrs = %{text: "some text", sent_via: "some sent_via", email: "some email", phone_number: "some phone_number"}
+      valid_attrs = %{
+        text: "some text",
+        sent_via: "some sent_via",
+        email: "some email",
+        phone_number: "some phone_number"
+      }
 
       assert {:ok, %Reminder{} = reminder} = Reminders.create_reminder(valid_attrs)
       assert reminder.text == "some text"
@@ -36,7 +41,13 @@ defmodule Skygarden.RemindersTest do
 
     test "update_reminder/2 with valid data updates the reminder" do
       reminder = reminder_fixture()
-      update_attrs = %{text: "some updated text", sent_via: "some updated sent_via", email: "some updated email", phone_number: "some updated phone_number"}
+
+      update_attrs = %{
+        text: "some updated text",
+        sent_via: "some updated sent_via",
+        email: "some updated email",
+        phone_number: "some updated phone_number"
+      }
 
       assert {:ok, %Reminder{} = reminder} = Reminders.update_reminder(reminder, update_attrs)
       assert reminder.text == "some updated text"

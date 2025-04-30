@@ -43,7 +43,7 @@ defmodule Skygarden.Tickets.Ticket do
       :fully_paid,
       :event_id,
       :ticket_type_id
-      ])
+    ])
     |> validate_required([
       :name,
       :phone_number,
@@ -58,10 +58,10 @@ defmodule Skygarden.Tickets.Ticket do
       :fully_paid,
       :event_id,
       :ticket_type_id
-      ])
+    ])
   end
 
-  def buy_ticket_changeset(ticket, attrs)do
+  def buy_ticket_changeset(ticket, attrs) do
     ticket
     |> cast(attrs, [
       :name,
@@ -89,17 +89,16 @@ defmodule Skygarden.Tickets.Ticket do
     ticket
     |> cast(attrs, [
       :price,
-      :maximum_price,
+      :maximum_price
     ])
     |> validate_required([
       :price,
-      :maximum_price,
+      :maximum_price
     ])
     |> validate_top_up_not_more_than_maximum_price()
-
   end
 
-  def buy_bnpl_ticket_changeset(ticket,attrs)do
+  def buy_bnpl_ticket_changeset(ticket, attrs) do
     ticket
     |> cast(attrs, [
       :name,
@@ -131,9 +130,9 @@ defmodule Skygarden.Tickets.Ticket do
     phone_number = get_phone_number(formatted_phone_number)
 
     case Tickets.get_bnpl_tickets_for_event_and_phone_number(
-      event_id,
-      phone_number
-      ) do
+           event_id,
+           phone_number
+         ) do
       [] ->
         changeset
 
@@ -141,15 +140,16 @@ defmodule Skygarden.Tickets.Ticket do
         add_error(
           changeset,
           :formatted_phone_number,
-          "Phone number already exists for this event")
+          "Phone number already exists for this event"
+        )
     end
   end
 
-  defp get_phone_number(nil)do
+  defp get_phone_number(nil) do
     ""
   end
 
-  defp get_phone_number(formatted_phone_number)do
+  defp get_phone_number(formatted_phone_number) do
     "254" <> formatted_phone_number
   end
 
@@ -160,7 +160,9 @@ defmodule Skygarden.Tickets.Ticket do
     if price > maximum_price do
       add_error(
         changeset,
-        :price, "Top up amount cannot be more than the maximum price")
+        :price,
+        "Top up amount cannot be more than the maximum price"
+      )
     else
       changeset
     end
