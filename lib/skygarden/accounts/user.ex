@@ -12,6 +12,9 @@ defmodule Skygarden.Accounts.User do
     field :role, :string, default: "admin"
     field :confirmed_at, :utc_datetime
 
+    field :first_name, :string
+    field :second_name, :string
+
     timestamps(type: :utc_datetime)
   end
 
@@ -40,16 +43,22 @@ defmodule Skygarden.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :first_name, :second_name])
     |> validate_email(opts)
     |> validate_password(opts)
+    |> validate_required([:first_name, :second_name])
+    |> validate_length(:first_name, min: 2, max: 20)
+    |> validate_length(:second_name, min: 2, max: 20)
+
   end
 
   def create_changeset(changeset, attrs, opts \\ []) do
     changeset
-    |> cast(attrs, [:email, :hashed_password, :super_admin, :active, :role])
-    |> validate_required([:email, :hashed_password, :super_admin, :active, :role])
+    |> cast(attrs, [:email, :hashed_password, :super_admin, :active, :role, :first_name, :second_name])
+    |> validate_required([:email, :hashed_password, :super_admin, :active, :role, :first_name, :second_name])
     |> validate_email(opts)
+    |> validate_length(:first_name, min: 2, max: 20)
+    |> validate_length(:second_name, min: 2, max: 20)
   end
 
   defp validate_email(changeset, opts) do

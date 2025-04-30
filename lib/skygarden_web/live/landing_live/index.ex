@@ -9,9 +9,13 @@ defmodule SkygardenWeb.LandingLive.Index do
      |> assign(:active_tab, "Landing")}
   end
 
+
   @impl true
   def render(assigns) do
     ~H"""
+    <.navbar />
+    <.landing_layout/>
+    <.footer/>
     <.navbar />
     <.landing_layout />
     <.footer />
