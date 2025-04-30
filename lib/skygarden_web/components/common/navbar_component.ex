@@ -7,7 +7,6 @@ defmodule SkygardenWeb.Common.NavbarComponent do
       <div class="max-w-[90%] mx-auto flex items-center justify-between py-4">
         <a href="/" class="text-xl font-bold text-blue-500">Sky Tickets</a>
         <button id="navbar-toggle" class="md:hidden text-black dark:text-white focus:outline-none">
-          <!-- Hamburger icon (three bars) -->
         <i class="fas fa-hamburger"></i>
         </button>
         <div id="navbar-menu" class="hidden md:flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 fixed md:static top-0 left-0 w-full md:w-auto bg-[#0f0f0f] md:bg-transparent z-50 ">
@@ -36,7 +35,17 @@ defmodule SkygardenWeb.Common.NavbarComponent do
         </div>
         <div class="hidden lg:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 w-full md:w-auto">
             <a href="/admin/create_event" class=" hover:text-blue-500 font-bold text-blue-700 border-[1px] border-blue-700 rounded-md px-4 py-2 dark:hover:text-white dark:hover:border-white transition">Create Event</a>
-            <a href="/users/register" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 font-bold">Sign In</a>
+            <%!-- <%= if @current_user do %> --%>
+            <%!-- <.link
+            href="/users/log_out"
+            method="delete"
+            class="font-semibold dark:text-white hover:text-blue-500 dark:hover:text-blue-500 bg-blue-700 rounded-md items-center px-4 py-2 text-white hover:bg-blue-600 transition duration-150 ease-in-out"
+          >
+            Log out
+          </.link>
+            <% else %> --%>
+            <a href="/users/log_in" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 font-bold">Sign In</a>
+            <%!-- <% end %> --%>
           </div>
       </div>
     </nav>
