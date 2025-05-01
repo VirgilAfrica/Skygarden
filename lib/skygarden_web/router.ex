@@ -22,7 +22,8 @@ defmodule SkygardenWeb.Router do
 
     get "/", PageController, :home
     live "/landing", LandingLive.Index, :index
-    live "/events", BrowseventsLive.Index,:index
+    live "/browse-events", BrowseventsLive.Index,:index
+    live "/browse-events/:id", EventsDetailsLive, :index
   end
 
   # Other scopes may use custom stacks.
