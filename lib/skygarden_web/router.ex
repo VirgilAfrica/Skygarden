@@ -72,7 +72,14 @@ defmodule SkygardenWeb.Router do
 
       scope "/admin" do
         live "/dashboard", AdminLive.Index, :index
-        # live "/events/new", 
+
+        # Event management routes
+        live "/events", EventLive.Index, :index
+        live "/events/new", EventLive.Index, :new
+        live "/events/:id/edit", EventLive.Index, :edit
+        live "/events/:id", EventLive.Show, :show
+        live "/events/:id/show/edit", EventLive.Show, :edit
+        
       end
     end
   end

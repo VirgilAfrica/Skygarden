@@ -103,12 +103,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Toggle dropdown menu
   document.querySelectorAll(".fa-ellipsis-v").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
 
-      // Close all other dropdowns first
       document.querySelectorAll(".fa-ellipsis-v")
         .forEach(otherBtn => {
           if (otherBtn !== btn) {
@@ -126,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", () => {
     document.querySelectorAll(".fa-ellipsis-v").forEach((btn) => {
       const dropdown = btn.closest(".relative").querySelector("div:not(.fa-ellipsis-v)");

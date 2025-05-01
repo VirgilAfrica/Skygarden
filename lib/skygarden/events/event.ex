@@ -3,7 +3,7 @@ defmodule Skygarden.Events.Event do
   import Ecto.Changeset
 
   schema "events" do
-    field :active, :boolean, default: true
+    field :active, :boolean, default: false
     field :name, :string
     field :date, :date
     field :description, :string
@@ -11,11 +11,10 @@ defmodule Skygarden.Events.Event do
     field :poster_image, :string
     field :start_time, :time
     field :end_time, :time
-    field :remind_time, :time, default: ~T[10:00:00]
+    field :remind_time, :time
     field :slug, :string
-    field :remind_after, :integer, default: 3
-    # field :user_id, :id
-    belongs_to :user, Skygarden.Accounts.User
+    field :remind_after, :integer
+    field :user_id, :id
 
     timestamps(type: :utc_datetime)
   end
@@ -23,31 +22,7 @@ defmodule Skygarden.Events.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [
-      :name,
-      :description,
-      :poster_image,
-      :date,
-      :start_time,
-      :location,
-      :end_time,
-      :remind_time,
-      :slug,
-      :active,
-      :remind_after
-        ])
-    |> validate_required([
-      :name,
-      :description,
-      :poster_image,
-      :date,
-      :start_time,
-      :location,
-      :end_time,
-      :remind_time,
-      :slug,
-      :active,
-      :remind_after
-        ])
+    |> cast(attrs, [:name, :description, :poster_image, :date, :start_time, :location, :end_time, :remind_time, :slug, :active, :remind_after])
+    |> validate_required([:name, :description, :poster_image, :date, :start_time, :location, :end_time, :remind_time, :slug, :active, :remind_after])
   end
 end

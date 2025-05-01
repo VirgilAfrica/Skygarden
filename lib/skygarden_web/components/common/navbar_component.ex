@@ -34,7 +34,7 @@ defmodule SkygardenWeb.Common.NavbarComponent do
           </div>
         </div>
         <div class="hidden lg:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 w-full md:w-auto">
-            <a href="/admin/create_event" class=" hover:text-blue-500 font-bold text-blue-700 border-[1px] border-blue-700 rounded-md px-4 py-2 dark:hover:text-white dark:hover:border-white transition">Create Event</a>
+            <a href="/admin/events/new" class=" hover:text-blue-500 font-bold text-blue-700 border-[1px] border-blue-700 rounded-md px-4 py-2 dark:hover:text-white dark:hover:border-white transition">Create Event</a>
             <%!-- <%= if @current_user do %> --%>
             <%!-- <.link
             href="/users/log_out"
