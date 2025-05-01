@@ -3,7 +3,7 @@ defmodule SkygardenWeb.Common.NavbarComponent do
 
   def navbar(assigns) do
     ~H"""
-    <nav class=" dark:bg-[#0f0f0f] shadow-md">
+    <nav class=" dark:bg-black shadow-md">
       <div class="max-w-[90%] mx-auto flex items-center justify-between py-4">
         <a href="/" class="text-xl font-bold text-blue-500">Sky Tickets</a>
         <button id="navbar-toggle" class="md:hidden text-black dark:text-white focus:outline-none">

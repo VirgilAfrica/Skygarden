@@ -39,7 +39,7 @@ defmodule SkygardenWeb.UserRegistrationLive do
         </:actions>
       </.simple_form>
     </div> --%>
-    <div class="w-full lg:h-auto flex flex-col lg:flex-row gap-4">
+    <div class="w-full lg:h-auto flex flex-col lg:flex-row">
       <div class="lg:w-1/2 py-10 lg:h-auto bg-blue-700 text-white flex items-center justify-center ">
       <div class="max-w-[90%] mx-auto flex flex-col items-start justify-center space-y-8">
         <h2 class="text-[24px] lg:text-[40px] font-semibold">Create amazing events with Sky Tickets</h2>
@@ -68,11 +68,11 @@ defmodule SkygardenWeb.UserRegistrationLive do
           </div>
         </div>
       </div>
-      <div class="lg:w-1/2 w-full py-20">
+      <div class="lg:w-1/2 w-full py-20  ">
         <h1 class="text-[32px] md:text-[40px] text-center font-semibold">Sign up as Event Organizer</h1>
 
         <.simple_form
-        class="space-y-4 max-w-[90%] mx-auto mt-8"
+        class="space-y-4 max-w-[90%] mx-auto mt-8 "
         for={@form}
         id="registration_form"
         phx-submit="save"
