@@ -101,6 +101,7 @@ defmodule SkygardenWeb do
       import SkygardenWeb.Common.FooterComponent
       import SkygardenWeb.Common.NavbarComponent
       import SkygardenWeb.Admin.AdminComponent
+      import SkygardenWeb.Admin.WizardComponent
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

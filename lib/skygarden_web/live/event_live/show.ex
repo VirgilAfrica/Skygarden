@@ -1,5 +1,5 @@
 defmodule SkygardenWeb.EventLive.Show do
-  use SkygardenWeb, :live_view
+  use SkygardenWeb, :admin_live_view
 
   alias Skygarden.Events
 

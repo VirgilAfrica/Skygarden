@@ -1,12 +1,20 @@
 defmodule SkygardenWeb.EventLive.Index do
-  use SkygardenWeb, :live_view
+  use SkygardenWeb, :admin_live_view
 
   alias Skygarden.Events
   alias Skygarden.Events.Event
 
+
+
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :events, Events.list_events())}
+    {:ok,
+    stream(
+      socket,
+      :events,
+      Events.list_events()
+      )}
+
   end
 
   @impl true
