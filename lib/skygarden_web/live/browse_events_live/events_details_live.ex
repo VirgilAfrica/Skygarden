@@ -7,86 +7,91 @@ defmodule SkygardenWeb.EventsDetailsLive do
 
   def render(assigns) do
   ~H"""
-    <%!-- hero section --%>
-    <div class="w-full h-full bg-cover bg-center h-screen" style="background-image: url(/images/eventshero.jpg)">
-      <div class="flex items-center space-x-6 text-white font-semibold px-6 py-10 text-sm">
-         <h1>Back To Events</h1>
+    <%!-- Hero Section --%>
+    <section class="relative w-full h-[320px] bg-cover bg-center" style="background-image: url(/images/eventshero.jpg)">
+      <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+      <div class="relative z-10 flex flex-col justify-end h-full px-6 pt-6 pb-8">
+        <.link navigate="/browse-events" class="text-white text-xs flex items-center mb-4 hover:underline">
+          ← Back to Events
+        </.link>
+        <%!-- Optionally, add hero title here if needed --%>
       </div>
-    </div>
+    </section>
 
+    <%!-- Main Content with Gradient Overlay --%>
+    <div class="relative bg-gradient-to-b from-white/10 to-white pb-16">
+      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 lg:px-8 -mt-16">
 
-      <div class="relative">
-      <div class="absolute inset-0 bg-gradient-to-b from-white to-white opacity-10"></div>
-      <div class="relative z-20 flex w-full justify-between px-6 gap-6">
-      <div class="w-[60%]">
-        <%!-- About Event & Event Details Section --%>
-        <div class="w-full h-full bg-cover bg-center h-screen py-10 ">
-          <div>
-            <h1 class="flex  text-black font-semibold px-6 text-sm">
-              About This Event
-            </h1>
-            <h2 class="flex items-center w-[65%] text-black px-6 text-xs">
-              The premier tech conference for developers, designers, and tech enthusiasts.
-              Learn from the industy leaders, network with peers, and explore the latest
-              innovations.
-            </h2>
+        <%!-- Left: Event Details --%>
+        <div class="flex-1 rounded-xl  p-8">
+          <span class="inline-block bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full mb-4">Technology</span>
+          <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Tech Conference 2025</h1>
+          <div class="flex items-center text-gray-500 text-sm mb-6">
+            <span>15 May · 10:00 – 18:00</span>
+            <span class="mx-2">|</span>
+            <span>Nairobi, Kenya</span>
           </div>
-          <div>
-            <h1 class="flex text-black font-semibold px-6 py-10 text-sm">
-              Event Details
-            </h1>
-          </div>
-
-          <div class="">
+          <h2 class="text-lg font-semibold text-gray-800 mb-2">About This Event</h2>
+          <p class="text-gray-600 mb-6">
+            The premier tech conference for developers, designers, and tech enthusiasts.
+            Learn from the industry leaders, network with peers, and explore the latest innovations.
+          </p>
+          <h2 class="text-lg font-semibold text-gray-800 mb-2">Event Details</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
+            <div>
+              <div class="font-semibold">Date & Time</div>
+              <div>15 May · 10:00 – 18:00</div>
+            </div>
+            <div>
+              <div class="font-semibold">Location</div>
+              <div>Nairobi, Kenya</div>
+            </div>
+            <div>
+              <div class="font-semibold">Category</div>
+              <div>Technology</div>
+            </div>
+            <div>
+              <div class="font-semibold">Attendees</div>
+              <div>5000+</div>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
 
-      <%!-- Get Tickets --%>
-          <div class="w-[36%] flex flex-col items-start shadow-md rounded-lg p-4 m-4 space-y-4">
-            <h1 class="text-black font-semibold text-sm">Get Tickets</h1>
-
-            <div class="flex flex-col border border-gray-300 rounded-lg p-3 space-y-2">
-              <div class="flex justify-between">
-                <h1 class="text-black font-semibold text-sm">Standard Pass</h1>
-                <p class="text-[#5D3FD3] font-semibold text-sm">KES 2200</p>
+        <%!-- Right: Ticket Card --%>
+        <aside class="lg:w-[360px] w-full lg:sticky lg:top-8 bg-white rounded-xl shadow-lg border border-gray-200 p-6 flex flex-col gap-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Get Tickets</h3>
+          <div class="space-y-4">
+            <div class="border border-gray-200 rounded-lg p-4">
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold">Standard Pass</span>
+                <span class="text-[#5D3FD3] font-semibold">KES 2200</span>
               </div>
-              <p class="text-black text-sm">Access to all talks and exhibition area. 5000 Tickets Available</p>
+              <div class="text-gray-600 text-sm">Access to all talks and exhibition area. 5000 Tickets Available</div>
             </div>
-
-            <div class="flex flex-col border border-gray-300 rounded-lg p-3 space-y-2">
-              <div class="flex justify-between">
-                <h1 class="text-black font-semibold text-sm">Business Pass</h1>
-                <p class="text-[#5D3FD3] font-semibold text-sm">KES 4500</p>
+            <div class="border border-gray-200 rounded-lg p-4">
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold">Business Pass</span>
+                <span class="text-[#5D3FD3] font-semibold">KES 4500</span>
               </div>
-              <p class="text-black text-sm">Standard access plus networking events and lunch. 800 tickets available</p>
+              <div class="text-gray-600 text-sm">Standard access plus networking events and lunch. 800 tickets available</div>
             </div>
-
-            <div class="flex flex-col border border-gray-300 rounded-lg p-3 space-y-2">
-              <div class="flex justify-between">
-                <h1 class="text-black font-semibold text-sm">Ultimate Experience</h1>
-                <p class="text-[#5D3FD3] font-semibold text-sm">KES 10000</p>
+            <div class="border border-gray-200 rounded-lg p-4">
+              <div class="flex justify-between mb-1">
+                <span class="font-semibold">Ultimate Experience</span>
+                <span class="text-[#5D3FD3] font-semibold">KES 10000</span>
               </div>
-              <p class="text-black text-sm">All access including VIP lounge and exclusive sessions with other perks. 100 tickets available</p>
+              <div class="text-gray-600 text-sm">All access including VIP lounge and exclusive sessions with other perks. 100 tickets available</div>
             </div>
-
-            <.link
-              navigate={"/browse-events/buy-tickets"}
-              class="mt-4 bg-[#5D3FD3] text-white font-semibold py-2 px-4 rounded
-                    hover:bg-white hover:text-[#5D3FD3] hover:border-[#5D3FD3] border transition duration-300"
-            >
-              Buy Tickets
-            </.link>
           </div>
-
-
+          <.link
+            navigate={"/browse-events/buy-tickets"}
+            class="w-full mt-2 bg-[#5D3FD3] text-white font-semibold py-2 px-4 rounded hover:bg-white hover:text-[#5D3FD3] hover:border-[#5D3FD3] border transition duration-300 text-center"
+          >
+            Buy Ticket
+          </.link>
+        </aside>
       </div>
-
-
-
-
+    </div>
   """
   end
-
 end
