@@ -12,6 +12,7 @@ defmodule Skygarden.Repo.Migrations.CreateEvents do
       add :end_time, :time
       add :remind_time, :time
       add :slug, :text
+      add :event_type, :string, null: false
       add :active, :boolean, default: false, null: false
       add :remind_after, :integer, default: 3
       add :user_id, references(:users, on_delete: :nothing)

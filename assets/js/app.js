@@ -72,3 +72,64 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+document.addEventListener("DOMContentLoaded", () => {
+  function setupDropdown(toggleId, dropdownId, selectedId) {
+    const toggle = document.getElementById(toggleId);
+    const dropdown = document.getElementById(dropdownId);
+    const selected = document.getElementById(selectedId);
+
+    toggle?.addEventListener("click", () => {
+      dropdown.classList.toggle("hidden");
+    });
+
+    dropdown?.querySelectorAll(".dropdown-item").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        selected.textContent = `${selected.textContent.split(":")[0]}: ${e.target.textContent}`;
+        dropdown.classList.add("hidden");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!toggle.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.add("hidden");
+      }
+    });
+  }
+
+  setupDropdown("category-toggle", "category-dropdown", "selected-category");
+  setupDropdown("price-toggle", "price-dropdown", "selected-price");
+  setupDropdown("sort-toggle", "sort-dropdown", "selected-sort");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".fa-ellipsis-v").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      document.querySelectorAll(".fa-ellipsis-v")
+        .forEach(otherBtn => {
+          if (otherBtn !== btn) {
+            const otherDropdown = otherBtn.closest(".relative").querySelector("div:not(.fa-ellipsis-v)");
+            if (otherDropdown) {
+              otherDropdown.classList.add("hidden");
+            }
+          }
+        });
+
+      const dropdown = btn.closest(".relative").querySelector("div:not(.fa-ellipsis-v)");
+      if (dropdown) {
+        dropdown.classList.toggle("hidden");
+      }
+    });
+  });
+
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".fa-ellipsis-v").forEach((btn) => {
+      const dropdown = btn.closest(".relative").querySelector("div:not(.fa-ellipsis-v)");
+      if (dropdown && !dropdown.classList.contains("hidden")) {
+        dropdown.classList.add("hidden");
+      }
+    });
+  });
+});

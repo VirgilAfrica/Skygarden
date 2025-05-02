@@ -16,6 +16,10 @@ defmodule SkygardenWeb.UserLoginLive do
       </.header>
 
       <.simple_form for={@form} id="login_form" action={~p"/users/log_in"} phx-update="ignore">
+              <.input field={@form[:first_name]} type="text" label="Password" required />
+
+        <.input field={@form[:second_name]} type="text" label="Password" required />
+
         <.input field={@form[:email]} type="email" label="Email" required />
         <.input field={@form[:password]} type="password" label="Password" required />
 
@@ -63,66 +67,55 @@ defmodule SkygardenWeb.UserLoginLive do
         </div>
       </div>
       <div class="lg:w-1/2 w-full py-20">
-        <h1 class="text-[32px] md:text-[40px] text-center font-semibold">Sign up as Event Organizer</h1>
-
-        <form id="signupForm" class="space-y-4 max-w-[90%] mx-auto mt-8" phx-submit="register">
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-          <input type="text" id="firstName" name="firstName" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-        </div>
-
-        <div>
-          <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last name</label>
-          <input type="text" id="lastName" name="lastName" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-        </div>
-      </div>
-
-      <div>
-        <label for="organizationName" class="block text-sm font-medium text-gray-700 mb-1">Organization Name</label>
-        <input type="text" id="organizationName" name="organizationName" required
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-      </div>
+        <h1 class="text-[32px] md:text-[40px] text-center font-semibold">Login as an Event Organizer</h1>
+        <.simple_form
+        for={@form}
+        id="login_form"
+        action={~p"/users/log_in"}
+        class="space-y-4 max-w-[90%] mx-auto mt-8"
+        phx-update="ignore"
+        >
 
       <div>
         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-        <input type="email" id="email" name="email" required
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+        <.input
+        field={@form[:email]}
+        type="email"
+        required
+        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+      />
       </div>
 
       <div>
         <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-        <input type="password" id="password" name="password" required minlength="8"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
+        <.input
+        field={@form[:password]}
+        type="password"
+        required
+        minlength="6"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+      />
       </div>
-
-      <div>
-        <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-        <p id="passwordError" class="text-red-500 text-sm mt-1 hidden">Passwords do not match</p>
-      </div>
-
       <div class="flex items-start space-x-3 py-1">
-        <input type="checkbox" id="termsAccepted" name="termsAccepted" required
-          class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded mt-1">
-        <label for="termsAccepted" class="text-sm font-normal">
-          I agree to the <a href="#" class="text-purple-700 hover:underline">Terms of Service</a> and
-          <a href="#" class="text-purple-700 hover:underline">Privacy Policy</a>
-        </label>
+      <.input
+        field={@form[:remember_me]}
+        type="checkbox"
+        label="Keep me signed in"
+        class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded mt-1"
+      />
+
       </div>
 
-      <button type="submit"
-        class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded-md transition duration-200">
-        Create Account
-      </button>
+      <:actions>
+          <button phx-disable-with="Logging in..." class="w-full py-4 text-white font-bold bg-blue-600 hover:bg-blue-800 ease-in duration-300 rounded-md">
+            Log in <span aria-hidden="true">→</span>
+          </button>
+        </:actions>
 
       <div class="mt-4 text-center text-sm">
-        Already have an account? <a href="#" class="text-purple-700 hover:underline">Sign in</a>
+        Don't have an account? <a href="/users/register" class="text-purple-700 hover:underline">Sign up</a>
       </div>
-    </form>
+    </.simple_form>
 
       </div>
     </div>

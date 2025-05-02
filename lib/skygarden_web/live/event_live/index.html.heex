@@ -1,0 +1,57 @@
+
+
+<.header class="w-full max-w-[90%] mx-auto">
+  <h1 class="text-[24px] md:text-[40px] font-bold">  
+    Listing Events
+  </h1>
+  <:actions>
+    <.link patch={~p"/admin/events/new"}>
+      <.button>New Event</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="events"
+  rows={@streams.events}
+  class="max-w-[90%] mx-auto"
+  row_click={fn {_id, event} -> JS.navigate(~p"/admin/events/#{event}") end}
+  
+>
+  <:col :let={{_id, event}} label="Name">{event.name}</:col>
+  <:col :let={{_id, event}} label="Description">{event.description}</:col>
+  <:col :let={{_id, event}} label="Poster image">{event.poster_image}</:col>
+  <:col :let={{_id, event}} label="Date">{event.date}</:col>
+  <:col :let={{_id, event}} label="Start time">{event.start_time}</:col>
+  <:col :let={{_id, event}} label="Location">{event.location}</:col>
+  <:col :let={{_id, event}} label="End time">{event.end_time}</:col>
+  <:col :let={{_id, event}} label="Remind time">{event.remind_time}</:col>
+  <:col :let={{_id, event}} label="Slug">{event.slug}</:col>
+  <:col :let={{_id, event}} label="Active">{event.active}</:col>
+  <:col :let={{_id, event}} label="Remind after">{event.remind_after}</:col>
+  <:action :let={{_id, event}}>
+    <div class="sr-only">
+      <.link navigate={~p"/admin/events/#{event}"}>Show</.link>
+    </div>
+    <.link patch={~p"/admin/events/#{event}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, event}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: event.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="event-modal" show on_cancel={JS.patch(~p"/admin/events")}>
+  <.live_component
+    module={SkygardenWeb.EventLive.FormComponent}
+    id={@event.id || :new}
+    title={@page_title}
+    action={@live_action}
+    event={@event}
+    patch={~p"/admin/events"}
+  />
+</.modal>
