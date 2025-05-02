@@ -8,7 +8,15 @@ defmodule Skygarden.SubAccountsTest do
 
     import Skygarden.SubAccountsFixtures
 
-    @invalid_attrs %{currency: nil, account_name: nil, account_number: nil, settlement_bank: nil, subaccount_code: nil, percentage_split: nil, bank_code: nil}
+    @invalid_attrs %{
+      currency: nil,
+      account_name: nil,
+      account_number: nil,
+      settlement_bank: nil,
+      subaccount_code: nil,
+      percentage_split: nil,
+      bank_code: nil
+    }
 
     test "list_sub_accounts/0 returns all sub_accounts" do
       sub_account = sub_account_fixture()
@@ -21,7 +29,15 @@ defmodule Skygarden.SubAccountsTest do
     end
 
     test "create_sub_account/1 with valid data creates a sub_account" do
-      valid_attrs = %{currency: "some currency", account_name: "some account_name", account_number: "some account_number", settlement_bank: "some settlement_bank", subaccount_code: "some subaccount_code", percentage_split: 42, bank_code: 42}
+      valid_attrs = %{
+        currency: "some currency",
+        account_name: "some account_name",
+        account_number: "some account_number",
+        settlement_bank: "some settlement_bank",
+        subaccount_code: "some subaccount_code",
+        percentage_split: 42,
+        bank_code: 42
+      }
 
       assert {:ok, %SubAccount{} = sub_account} = SubAccounts.create_sub_account(valid_attrs)
       assert sub_account.currency == "some currency"
@@ -39,9 +55,20 @@ defmodule Skygarden.SubAccountsTest do
 
     test "update_sub_account/2 with valid data updates the sub_account" do
       sub_account = sub_account_fixture()
-      update_attrs = %{currency: "some updated currency", account_name: "some updated account_name", account_number: "some updated account_number", settlement_bank: "some updated settlement_bank", subaccount_code: "some updated subaccount_code", percentage_split: 43, bank_code: 43}
 
-      assert {:ok, %SubAccount{} = sub_account} = SubAccounts.update_sub_account(sub_account, update_attrs)
+      update_attrs = %{
+        currency: "some updated currency",
+        account_name: "some updated account_name",
+        account_number: "some updated account_number",
+        settlement_bank: "some updated settlement_bank",
+        subaccount_code: "some updated subaccount_code",
+        percentage_split: 43,
+        bank_code: 43
+      }
+
+      assert {:ok, %SubAccount{} = sub_account} =
+               SubAccounts.update_sub_account(sub_account, update_attrs)
+
       assert sub_account.currency == "some updated currency"
       assert sub_account.account_name == "some updated account_name"
       assert sub_account.account_number == "some updated account_number"
@@ -53,7 +80,10 @@ defmodule Skygarden.SubAccountsTest do
 
     test "update_sub_account/2 with invalid data returns error changeset" do
       sub_account = sub_account_fixture()
-      assert {:error, %Ecto.Changeset{}} = SubAccounts.update_sub_account(sub_account, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               SubAccounts.update_sub_account(sub_account, @invalid_attrs)
+
       assert sub_account == SubAccounts.get_sub_account!(sub_account.id)
     end
 

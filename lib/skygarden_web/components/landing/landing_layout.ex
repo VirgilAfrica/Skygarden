@@ -158,7 +158,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
           </section>
       """
     end
-    
+
     def top_conferences(assigns) do
       ~H"""
           <section class="w-full  mx-auto max-w-[90%] flex flex-col justify-between items-center ">
@@ -475,6 +475,6 @@ defmodule SkygardenWeb.Landing.LandingLayout do
         price: "KES 2,000.00",
         image: "/images/landing/concert2.png"
       }
-    ]
-  end
+]
+end
 end

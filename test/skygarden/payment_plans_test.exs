@@ -36,14 +36,19 @@ defmodule Skygarden.PaymentPlansTest do
       paymentplan = paymentplan_fixture()
       update_attrs = %{installments: 43, interest: 456.7}
 
-      assert {:ok, %Paymentplan{} = paymentplan} = PaymentPlans.update_paymentplan(paymentplan, update_attrs)
+      assert {:ok, %Paymentplan{} = paymentplan} =
+               PaymentPlans.update_paymentplan(paymentplan, update_attrs)
+
       assert paymentplan.installments == 43
       assert paymentplan.interest == 456.7
     end
 
     test "update_paymentplan/2 with invalid data returns error changeset" do
       paymentplan = paymentplan_fixture()
-      assert {:error, %Ecto.Changeset{}} = PaymentPlans.update_paymentplan(paymentplan, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               PaymentPlans.update_paymentplan(paymentplan, @invalid_attrs)
+
       assert paymentplan == PaymentPlans.get_paymentplan!(paymentplan.id)
     end
 

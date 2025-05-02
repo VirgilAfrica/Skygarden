@@ -25,7 +25,7 @@ defmodule Skygarden.TicketPayments.TicketPayment do
       :transaction_id,
       :event_id,
       :ticket_id
-      ])
+    ])
     |> validate_required([
       :price,
       :phone_number,
@@ -34,6 +34,6 @@ defmodule Skygarden.TicketPayments.TicketPayment do
       :transaction_id,
       :event_id,
       :ticket_id
-      ])
+    ])
   end
 end

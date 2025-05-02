@@ -8,7 +8,17 @@ defmodule Skygarden.TicketTypesTest do
 
     import Skygarden.TicketTypesFixtures
 
-    @invalid_attrs %{active: nil, name: nil, description: nil, price: nil, activate_on: nil, deactivate_on: nil, ticket_cap: nil, admits: nil, display_bnpl_option: nil}
+    @invalid_attrs %{
+      active: nil,
+      name: nil,
+      description: nil,
+      price: nil,
+      activate_on: nil,
+      deactivate_on: nil,
+      ticket_cap: nil,
+      admits: nil,
+      display_bnpl_option: nil
+    }
 
     test "list_ticket_types/0 returns all ticket_types" do
       ticket_type = ticket_type_fixture()
@@ -21,7 +31,17 @@ defmodule Skygarden.TicketTypesTest do
     end
 
     test "create_ticket_type/1 with valid data creates a ticket_type" do
-      valid_attrs = %{active: true, name: "some name", description: "some description", price: 120.5, activate_on: ~N[2025-04-21 10:06:00], deactivate_on: ~N[2025-04-21 10:06:00], ticket_cap: 42, admits: 42, display_bnpl_option: true}
+      valid_attrs = %{
+        active: true,
+        name: "some name",
+        description: "some description",
+        price: 120.5,
+        activate_on: ~N[2025-04-21 10:06:00],
+        deactivate_on: ~N[2025-04-21 10:06:00],
+        ticket_cap: 42,
+        admits: 42,
+        display_bnpl_option: true
+      }
 
       assert {:ok, %TicketType{} = ticket_type} = TicketTypes.create_ticket_type(valid_attrs)
       assert ticket_type.active == true
@@ -41,9 +61,22 @@ defmodule Skygarden.TicketTypesTest do
 
     test "update_ticket_type/2 with valid data updates the ticket_type" do
       ticket_type = ticket_type_fixture()
-      update_attrs = %{active: false, name: "some updated name", description: "some updated description", price: 456.7, activate_on: ~N[2025-04-22 10:06:00], deactivate_on: ~N[2025-04-22 10:06:00], ticket_cap: 43, admits: 43, display_bnpl_option: false}
 
-      assert {:ok, %TicketType{} = ticket_type} = TicketTypes.update_ticket_type(ticket_type, update_attrs)
+      update_attrs = %{
+        active: false,
+        name: "some updated name",
+        description: "some updated description",
+        price: 456.7,
+        activate_on: ~N[2025-04-22 10:06:00],
+        deactivate_on: ~N[2025-04-22 10:06:00],
+        ticket_cap: 43,
+        admits: 43,
+        display_bnpl_option: false
+      }
+
+      assert {:ok, %TicketType{} = ticket_type} =
+               TicketTypes.update_ticket_type(ticket_type, update_attrs)
+
       assert ticket_type.active == false
       assert ticket_type.name == "some updated name"
       assert ticket_type.description == "some updated description"
@@ -57,7 +90,10 @@ defmodule Skygarden.TicketTypesTest do
 
     test "update_ticket_type/2 with invalid data returns error changeset" do
       ticket_type = ticket_type_fixture()
-      assert {:error, %Ecto.Changeset{}} = TicketTypes.update_ticket_type(ticket_type, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               TicketTypes.update_ticket_type(ticket_type, @invalid_attrs)
+
       assert ticket_type == TicketTypes.get_ticket_type!(ticket_type.id)
     end
 

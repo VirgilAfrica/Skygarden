@@ -11,7 +11,7 @@ defmodule Skygarden.SubAccounts.SubAccount do
     field :percentage_split, :integer
     field :bank_code, :integer
     field :bank_name, :string
-    belongs_to :user , Skygarden.Accounts.User
+    belongs_to :user, Skygarden.Accounts.User
 
     timestamps(type: :utc_datetime)
   end
@@ -27,9 +27,9 @@ defmodule Skygarden.SubAccounts.SubAccount do
       :subaccount_code,
       :percentage_split,
       :bank_code,
-      :user_id ,
+      :user_id,
       :bank_name
-      ])
+    ])
     |> validate_required([
       :account_name,
       :account_number,
@@ -38,8 +38,8 @@ defmodule Skygarden.SubAccounts.SubAccount do
       :subaccount_code,
       :percentage_split,
       :bank_code,
-      :user_id ,
+      :user_id,
       :bank_name
-      ])
+    ])
   end
 end

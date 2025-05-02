@@ -35,13 +35,18 @@ defmodule Skygarden.EventUsersTest do
       event_user = event_user_fixture()
       update_attrs = %{role: "some updated role"}
 
-      assert {:ok, %EventUser{} = event_user} = EventUsers.update_event_user(event_user, update_attrs)
+      assert {:ok, %EventUser{} = event_user} =
+               EventUsers.update_event_user(event_user, update_attrs)
+
       assert event_user.role == "some updated role"
     end
 
     test "update_event_user/2 with invalid data returns error changeset" do
       event_user = event_user_fixture()
-      assert {:error, %Ecto.Changeset{}} = EventUsers.update_event_user(event_user, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               EventUsers.update_event_user(event_user, @invalid_attrs)
+
       assert event_user == EventUsers.get_event_user!(event_user.id)
     end
 

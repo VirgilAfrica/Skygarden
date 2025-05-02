@@ -35,13 +35,18 @@ defmodule Skygarden.EventPostersTest do
       event_poster = event_poster_fixture()
       update_attrs = %{image: "some updated image"}
 
-      assert {:ok, %EventPoster{} = event_poster} = EventPosters.update_event_poster(event_poster, update_attrs)
+      assert {:ok, %EventPoster{} = event_poster} =
+               EventPosters.update_event_poster(event_poster, update_attrs)
+
       assert event_poster.image == "some updated image"
     end
 
     test "update_event_poster/2 with invalid data returns error changeset" do
       event_poster = event_poster_fixture()
-      assert {:error, %Ecto.Changeset{}} = EventPosters.update_event_poster(event_poster, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               EventPosters.update_event_poster(event_poster, @invalid_attrs)
+
       assert event_poster == EventPosters.get_event_poster!(event_poster.id)
     end
 

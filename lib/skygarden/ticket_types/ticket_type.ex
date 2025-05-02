@@ -33,7 +33,7 @@ defmodule Skygarden.TicketTypes.TicketType do
       :ticket_cap,
       :admits,
       :display_bnpl_option
-      ])
+    ])
     |> validate_required([
       :name,
       :price,
@@ -45,8 +45,8 @@ defmodule Skygarden.TicketTypes.TicketType do
       :ticket_cap,
       :admits,
       :display_bnpl_option
-      ])
-      |> validate_admits_is_positive()
+    ])
+    |> validate_admits_is_positive()
   end
 
   defp validate_admits_is_positive(changeset) do

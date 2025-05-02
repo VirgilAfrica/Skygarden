@@ -35,7 +35,7 @@ defmodule Skygarden.Events.Event do
       :slug,
       :active,
       :remind_after
-        ])
+    ])
     |> validate_required([
       :name,
       :description,
@@ -48,6 +48,6 @@ defmodule Skygarden.Events.Event do
       :slug,
       :active,
       :remind_after
-        ])
+    ])
   end
 end

@@ -1,14 +1,12 @@
 defmodule SkygardenWeb.LandingLive.Index do
   use SkygardenWeb, :live_view
 
-
   @impl true
   def mount(_params, _session, socket) do
     {:ok,
-    socket
-    |> assign(:page_title, "Landing Page")
-    |> assign(:active_tab, "Landing")
-  }
+     socket
+     |> assign(:page_title, "Landing Page")
+     |> assign(:active_tab, "Landing")}
   end
 
 
@@ -18,6 +16,9 @@ defmodule SkygardenWeb.LandingLive.Index do
     <.navbar />
     <.landing_layout/>
     <.footer/>
+    <.navbar />
+    <.landing_layout />
+    <.footer />
     """
   end
 end
