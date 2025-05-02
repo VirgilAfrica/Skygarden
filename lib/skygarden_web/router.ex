@@ -22,7 +22,7 @@ defmodule SkygardenWeb.Router do
 
     # get "/", PageController, :home
     live "/", LandingLive.Index, :index
-    get "/", PageController, :home
+    # get "/", PageController, :home
     live "/landing", LandingLive.Index, :index
     live "/browse-events", BrowseventsLive.Index,:index
     live "/browse-events/:id", EventsDetailsLive, :index
