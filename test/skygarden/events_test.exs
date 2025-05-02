@@ -8,7 +8,19 @@ defmodule Skygarden.EventsTest do
 
     import Skygarden.EventsFixtures
 
-    @invalid_attrs %{active: nil, name: nil, date: nil, description: nil, location: nil, poster_image: nil, start_time: nil, end_time: nil, remind_time: nil, slug: nil, remind_after: nil}
+    @invalid_attrs %{
+      active: nil,
+      name: nil,
+      date: nil,
+      description: nil,
+      location: nil,
+      poster_image: nil,
+      start_time: nil,
+      end_time: nil,
+      remind_time: nil,
+      slug: nil,
+      remind_after: nil
+    }
 
     test "list_events/0 returns all events" do
       event = event_fixture()
@@ -21,7 +33,19 @@ defmodule Skygarden.EventsTest do
     end
 
     test "create_event/1 with valid data creates a event" do
-      valid_attrs = %{active: true, name: "some name", date: ~D[2025-04-21], description: "some description", location: "some location", poster_image: "some poster_image", start_time: ~T[14:00:00], end_time: ~T[14:00:00], remind_time: ~T[14:00:00], slug: "some slug", remind_after: 42}
+      valid_attrs = %{
+        active: true,
+        name: "some name",
+        date: ~D[2025-04-21],
+        description: "some description",
+        location: "some location",
+        poster_image: "some poster_image",
+        start_time: ~T[14:00:00],
+        end_time: ~T[14:00:00],
+        remind_time: ~T[14:00:00],
+        slug: "some slug",
+        remind_after: 42
+      }
 
       assert {:ok, %Event{} = event} = Events.create_event(valid_attrs)
       assert event.active == true
@@ -43,7 +67,20 @@ defmodule Skygarden.EventsTest do
 
     test "update_event/2 with valid data updates the event" do
       event = event_fixture()
-      update_attrs = %{active: false, name: "some updated name", date: ~D[2025-04-22], description: "some updated description", location: "some updated location", poster_image: "some updated poster_image", start_time: ~T[15:01:01], end_time: ~T[15:01:01], remind_time: ~T[15:01:01], slug: "some updated slug", remind_after: 43}
+
+      update_attrs = %{
+        active: false,
+        name: "some updated name",
+        date: ~D[2025-04-22],
+        description: "some updated description",
+        location: "some updated location",
+        poster_image: "some updated poster_image",
+        start_time: ~T[15:01:01],
+        end_time: ~T[15:01:01],
+        remind_time: ~T[15:01:01],
+        slug: "some updated slug",
+        remind_after: 43
+      }
 
       assert {:ok, %Event{} = event} = Events.update_event(event, update_attrs)
       assert event.active == false

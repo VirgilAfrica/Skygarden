@@ -8,7 +8,13 @@ defmodule Skygarden.TicketPaymentsTest do
 
     import Skygarden.TicketPaymentsFixtures
 
-    @invalid_attrs %{price: nil, phone_number: nil, email: nil, payment_method: nil, transaction_id: nil}
+    @invalid_attrs %{
+      price: nil,
+      phone_number: nil,
+      email: nil,
+      payment_method: nil,
+      transaction_id: nil
+    }
 
     test "list_ticket_payments/0 returns all ticket_payments" do
       ticket_payment = ticket_payment_fixture()
@@ -21,9 +27,17 @@ defmodule Skygarden.TicketPaymentsTest do
     end
 
     test "create_ticket_payment/1 with valid data creates a ticket_payment" do
-      valid_attrs = %{price: 120.5, phone_number: "some phone_number", email: "some email", payment_method: "some payment_method", transaction_id: "some transaction_id"}
+      valid_attrs = %{
+        price: 120.5,
+        phone_number: "some phone_number",
+        email: "some email",
+        payment_method: "some payment_method",
+        transaction_id: "some transaction_id"
+      }
 
-      assert {:ok, %TicketPayment{} = ticket_payment} = TicketPayments.create_ticket_payment(valid_attrs)
+      assert {:ok, %TicketPayment{} = ticket_payment} =
+               TicketPayments.create_ticket_payment(valid_attrs)
+
       assert ticket_payment.price == 120.5
       assert ticket_payment.phone_number == "some phone_number"
       assert ticket_payment.email == "some email"
@@ -37,9 +51,18 @@ defmodule Skygarden.TicketPaymentsTest do
 
     test "update_ticket_payment/2 with valid data updates the ticket_payment" do
       ticket_payment = ticket_payment_fixture()
-      update_attrs = %{price: 456.7, phone_number: "some updated phone_number", email: "some updated email", payment_method: "some updated payment_method", transaction_id: "some updated transaction_id"}
 
-      assert {:ok, %TicketPayment{} = ticket_payment} = TicketPayments.update_ticket_payment(ticket_payment, update_attrs)
+      update_attrs = %{
+        price: 456.7,
+        phone_number: "some updated phone_number",
+        email: "some updated email",
+        payment_method: "some updated payment_method",
+        transaction_id: "some updated transaction_id"
+      }
+
+      assert {:ok, %TicketPayment{} = ticket_payment} =
+               TicketPayments.update_ticket_payment(ticket_payment, update_attrs)
+
       assert ticket_payment.price == 456.7
       assert ticket_payment.phone_number == "some updated phone_number"
       assert ticket_payment.email == "some updated email"
@@ -49,14 +72,20 @@ defmodule Skygarden.TicketPaymentsTest do
 
     test "update_ticket_payment/2 with invalid data returns error changeset" do
       ticket_payment = ticket_payment_fixture()
-      assert {:error, %Ecto.Changeset{}} = TicketPayments.update_ticket_payment(ticket_payment, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               TicketPayments.update_ticket_payment(ticket_payment, @invalid_attrs)
+
       assert ticket_payment == TicketPayments.get_ticket_payment!(ticket_payment.id)
     end
 
     test "delete_ticket_payment/1 deletes the ticket_payment" do
       ticket_payment = ticket_payment_fixture()
       assert {:ok, %TicketPayment{}} = TicketPayments.delete_ticket_payment(ticket_payment)
-      assert_raise Ecto.NoResultsError, fn -> TicketPayments.get_ticket_payment!(ticket_payment.id) end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        TicketPayments.get_ticket_payment!(ticket_payment.id)
+      end
     end
 
     test "change_ticket_payment/1 returns a ticket_payment changeset" do

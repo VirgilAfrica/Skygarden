@@ -479,6 +479,6 @@ defmodule SkygardenWeb.Landing.LandingLayout do
         price: "KES 2,000.00",
         image: "/images/landing/concert2.png"
       }
-    ]
-  end
+]
+end
 end

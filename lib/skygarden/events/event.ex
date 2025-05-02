@@ -13,7 +13,7 @@ defmodule Skygarden.Events.Event do
     field :end_time, :time
     field :remind_time, :time
     field :slug, :string
-    field :remind_after, :integer 
+    field :remind_after, :integer
     field :user_id, :id
     field :event_type, :string
 

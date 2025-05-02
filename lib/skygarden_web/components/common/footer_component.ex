@@ -53,6 +53,6 @@ defmodule SkygardenWeb.Common.FooterComponent do
         </div>
       </div>
     </footer>
-    """
-  end
+ """
+end
 end

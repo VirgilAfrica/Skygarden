@@ -100,6 +100,7 @@ defmodule SkygardenWeb do
       import SkygardenWeb.Landing.LandingLayout
       import SkygardenWeb.Common.FooterComponent
       import SkygardenWeb.Common.NavbarComponent
+      import SkygardenWeb.BrowseEvents.BrowseEvents
       import SkygardenWeb.Admin.AdminComponent
       import SkygardenWeb.Admin.WizardComponent
 

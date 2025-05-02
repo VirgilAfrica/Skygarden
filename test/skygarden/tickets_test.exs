@@ -8,7 +8,18 @@ defmodule Skygarden.TicketsTest do
 
     import Skygarden.TicketsFixtures
 
-    @invalid_attrs %{name: nil, phone_number: nil, email: nil, total_price: nil, remaining_price: nil, complimentary: nil, quantity: nil, ticketid: nil, transaction_id: nil, bnpl: nil}
+    @invalid_attrs %{
+      name: nil,
+      phone_number: nil,
+      email: nil,
+      total_price: nil,
+      remaining_price: nil,
+      complimentary: nil,
+      quantity: nil,
+      ticketid: nil,
+      transaction_id: nil,
+      bnpl: nil
+    }
 
     test "list_tickets/0 returns all tickets" do
       ticket = ticket_fixture()
@@ -21,7 +32,18 @@ defmodule Skygarden.TicketsTest do
     end
 
     test "create_ticket/1 with valid data creates a ticket" do
-      valid_attrs = %{name: "some name", phone_number: "some phone_number", email: "some email", total_price: 120.5, remaining_price: 120.5, complimentary: true, quantity: 42, ticketid: "some ticketid", transaction_id: "some transaction_id", bnpl: true}
+      valid_attrs = %{
+        name: "some name",
+        phone_number: "some phone_number",
+        email: "some email",
+        total_price: 120.5,
+        remaining_price: 120.5,
+        complimentary: true,
+        quantity: 42,
+        ticketid: "some ticketid",
+        transaction_id: "some transaction_id",
+        bnpl: true
+      }
 
       assert {:ok, %Ticket{} = ticket} = Tickets.create_ticket(valid_attrs)
       assert ticket.name == "some name"
@@ -42,7 +64,19 @@ defmodule Skygarden.TicketsTest do
 
     test "update_ticket/2 with valid data updates the ticket" do
       ticket = ticket_fixture()
-      update_attrs = %{name: "some updated name", phone_number: "some updated phone_number", email: "some updated email", total_price: 456.7, remaining_price: 456.7, complimentary: false, quantity: 43, ticketid: "some updated ticketid", transaction_id: "some updated transaction_id", bnpl: false}
+
+      update_attrs = %{
+        name: "some updated name",
+        phone_number: "some updated phone_number",
+        email: "some updated email",
+        total_price: 456.7,
+        remaining_price: 456.7,
+        complimentary: false,
+        quantity: 43,
+        ticketid: "some updated ticketid",
+        transaction_id: "some updated transaction_id",
+        bnpl: false
+      }
 
       assert {:ok, %Ticket{} = ticket} = Tickets.update_ticket(ticket, update_attrs)
       assert ticket.name == "some updated name"

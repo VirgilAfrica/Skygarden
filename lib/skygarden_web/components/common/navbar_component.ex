@@ -49,6 +49,6 @@ defmodule SkygardenWeb.Common.NavbarComponent do
           </div>
       </div>
     </nav>
-    """
-  end
+ """
+end
 end

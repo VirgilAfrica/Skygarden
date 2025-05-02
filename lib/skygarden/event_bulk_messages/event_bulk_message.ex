@@ -14,7 +14,6 @@ defmodule Skygarden.EventBulkMessages.EventBulkMessage do
     belongs_to :event, Skygarden.Events.Event
     belongs_to :ticket_type, Skygarden.TicketTypes.TicketType
 
-
     timestamps(type: :utc_datetime)
   end
 
@@ -31,8 +30,8 @@ defmodule Skygarden.EventBulkMessages.EventBulkMessage do
       :send_via,
       :send_to_a_specific_ticket_group,
       :user_id,
-      :event_id,
-      ])
+      :event_id
+    ])
     |> validate_required([
       :text,
       :send_at,
@@ -43,12 +42,12 @@ defmodule Skygarden.EventBulkMessages.EventBulkMessage do
       :send_via,
       :send_to_a_specific_ticket_group,
       :user_id,
-      :event_id,
-      ])
-      |> send_at_later_than_now()
+      :event_id
+    ])
+    |> send_at_later_than_now()
   end
 
-  defp send_at_later_than_now(changeset)do
+  defp send_at_later_than_now(changeset) do
     send_at = get_field(changeset, :send_at)
 
     if is_nil(send_at) do
@@ -60,11 +59,11 @@ defmodule Skygarden.EventBulkMessages.EventBulkMessage do
       send_at =
         DateTime.from_naive!(send_at, "Etc/UTC")
 
-        if send_at < now do
-          add_error(changeset, :send_at, "Send at must be later than now")
-        else
-          changeset
-        end
+      if send_at < now do
+        add_error(changeset, :send_at, "Send at must be later than now")
+      else
+        changeset
+      end
     end
   end
 end
