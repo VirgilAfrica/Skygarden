@@ -15,10 +15,12 @@ defmodule SkygardenWeb.EventsDetailsLive do
     </div>
 
 
-      <div class="flex w-full justify-between px-6 gap-6">
+      <div class="relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-white to-white opacity-10"></div>
+      <div class="relative z-20 flex w-full justify-between px-6 gap-6">
       <div class="w-[60%]">
         <%!-- About Event & Event Details Section --%>
-        <div class="w-full h-full bg-cover bg-center h-screen py-10">
+        <div class="w-full h-full bg-cover bg-center h-screen py-10 ">
           <div>
             <h1 class="flex  text-black font-semibold px-6 text-sm">
               About This Event
@@ -39,58 +41,49 @@ defmodule SkygardenWeb.EventsDetailsLive do
           </div>
         </div>
       </div>
-
-      <%!-- Get Tickets --%>
-      <div class="w-[36%]  flex flex-col items-start shadow-md rounded-lg p-4 m-4 ">
-        <h1 class="text-black font-semibold text-sm">
-          Get Tickets
-        </h1>
-
-        <div class="flex border border-gray-300 rounded-lg">
-        <div class="flex ">
-        <h1 class="text-black font-semibold text-sm">
-        Standard Pass
-        </h1>
-        <p class="text-black font-semibold text-sm">
-        KES 2200
-        </p>
-        </div>
-        <p class="text-black text-sm">
-        Access to all tals and exhibition area 5000 Tickets Available
-        </p>
-        </div>
-
-        <div class="flex border border-gray-300 rounded-lg">
-        <div class="flex ">
-        <h1 class="text-black font-semibold text-sm">
-        Bussiness Pass
-        </h1>
-        <p class="text-black font-semibold text-sm">
-        KES 4500
-        </p>
-        </div>
-        <p class="text-black text-sm">
-        Standard access plus networking events and launch 800 tickets available
-        </p>
-        </div>
-
-        <div class="flex border border-gray-300 rounded-lg">
-        <div class="flex ">
-        <h1 class="text-black font-semibold text-sm">
-        Ultimate Experience
-        </h1>
-        <p class="text-black font-semibold text-sm">
-        KES 10000
-        </p>
-        </div>
-        <p class="text-black text-sm">
-        All access including VIP lounge and exclusive sessions with other perks. 100 tickets available
-        </p>
-        </div>
-        
       </div>
 
-    </div>
+      <%!-- Get Tickets --%>
+          <div class="w-[36%] flex flex-col items-start shadow-md rounded-lg p-4 m-4 space-y-4">
+            <h1 class="text-black font-semibold text-sm">Get Tickets</h1>
+
+            <div class="flex flex-col border border-gray-300 rounded-lg p-3 space-y-2">
+              <div class="flex justify-between">
+                <h1 class="text-black font-semibold text-sm">Standard Pass</h1>
+                <p class="text-[#5D3FD3] font-semibold text-sm">KES 2200</p>
+              </div>
+              <p class="text-black text-sm">Access to all talks and exhibition area. 5000 Tickets Available</p>
+            </div>
+
+            <div class="flex flex-col border border-gray-300 rounded-lg p-3 space-y-2">
+              <div class="flex justify-between">
+                <h1 class="text-black font-semibold text-sm">Business Pass</h1>
+                <p class="text-[#5D3FD3] font-semibold text-sm">KES 4500</p>
+              </div>
+              <p class="text-black text-sm">Standard access plus networking events and lunch. 800 tickets available</p>
+            </div>
+
+            <div class="flex flex-col border border-gray-300 rounded-lg p-3 space-y-2">
+              <div class="flex justify-between">
+                <h1 class="text-black font-semibold text-sm">Ultimate Experience</h1>
+                <p class="text-[#5D3FD3] font-semibold text-sm">KES 10000</p>
+              </div>
+              <p class="text-black text-sm">All access including VIP lounge and exclusive sessions with other perks. 100 tickets available</p>
+            </div>
+
+            <.link
+              navigate={"/browse-events/buy-tickets"}
+              class="mt-4 bg-[#5D3FD3] text-white font-semibold py-2 px-4 rounded
+                    hover:bg-white hover:text-[#5D3FD3] hover:border-[#5D3FD3] border transition duration-300"
+            >
+              Buy Tickets
+            </.link>
+          </div>
+
+
+      </div>
+
+
 
 
   """

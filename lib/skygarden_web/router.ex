@@ -24,6 +24,7 @@ defmodule SkygardenWeb.Router do
     live "/landing", LandingLive.Index, :index
     live "/browse-events", BrowseventsLive.Index,:index
     live "/browse-events/:id", EventsDetailsLive, :index
+    live "/browse-events/:id/buy-tickets", SkygardenWeb.BuyTicketsLive, :index
   end
 
   # Other scopes may use custom stacks.
