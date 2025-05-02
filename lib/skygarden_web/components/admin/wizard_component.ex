@@ -44,10 +44,10 @@ defmodule SkygardenWeb.Admin.WizardComponent do
               <% end %>
             </div>
             <div class="flex justify-between">
-              <button type="button" class="text-blue-600 font-bold bg-white px-4 py-2 rounded-md" disabled>Back</button>
+              <button type="button" class="text-blue-600 font-bold bg-white md:px-6 md:py-3 px-4 py-2 lg:py-4 lg:px-8 rounded-md">Back</button>
               <button
                 type="submit"
-                class="bg-blue-600 text-white px-4 py-2 rounded-md font-bold cursor-pointer hover:bg-blue-700 transition"
+                class="bg-blue-600 text-white md:px-6 md:py-3 px-4 py-2 lg:py-4 lg:px-8 rounded-md rounded-md font-bold cursor-pointer hover:bg-blue-700 transition"
               >
                 Continue
               </button>
@@ -57,9 +57,8 @@ defmodule SkygardenWeb.Admin.WizardComponent do
 
         <%= if @step == :event_details do %>
           <div class="w-full max-w-[90%] mx-auto">
-            <h2 class="text-2xl font-bold mb-2 text-white text-center">Set Event Details</h2>
+            <h2 class="text[32px] md:text-[40px] font-bold mb-2 text-white text-center">Set Event Details</h2>
             <p class="mb-6 text-gray-300 text-center">Fill in the details about your event, location, and ticket pricing.</p>
-
             <form phx-submit="save_details" class="text-white">
               <input type="hidden" name="event[event_type]" value={@event_type} />
 
@@ -153,10 +152,10 @@ defmodule SkygardenWeb.Admin.WizardComponent do
               </div>
 
               <div class="flex justify-between mt-8">
-                <button type="button" phx-click="back" class="bg-transparent border border-white text-white px-6 py-2 rounded">
+                <button type="button" phx-click="back" class="bg-transparent border border-white text-white md:px-6 md:py-3 px-4 py-2 lg:py-4 lg:px-8 rounded-md">
                   Back
                 </button>
-                <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition">
+                <button type="submit" class="bg-indigo-600 text-white md:px-6 md:py-3 px-4 py-2 lg:py-4 lg:px-8 rounded-md hover:bg-indigo-700 transition">
                   Continue to Upload Media
                 </button>
               </div>
