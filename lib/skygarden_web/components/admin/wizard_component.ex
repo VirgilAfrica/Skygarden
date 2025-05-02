@@ -1,10 +1,6 @@
 defmodule SkygardenWeb.Admin.WizardComponent do
   use Phoenix.Component
-
-  # import Phoenix.HTML.Form
-  # import SkygardenWeb.CoreComponents
-  # import Phoenix.LiveView.Helpers
-
+  
   def wizard_layout(assigns) do
     ~H"""
     <section class="w-full bg-black">

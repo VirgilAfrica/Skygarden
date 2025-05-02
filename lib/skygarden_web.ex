@@ -58,6 +58,15 @@ defmodule SkygardenWeb do
     end
   end
 
+  def dashboard_live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {SkygardenWeb.Layouts, :dashboard}
+
+      unquote(html_helpers())
+    end
+  end
+
   def live_view do
     quote do
       use Phoenix.LiveView,
@@ -103,6 +112,7 @@ defmodule SkygardenWeb do
       import SkygardenWeb.BrowseEvents.BrowseEvents
       import SkygardenWeb.Admin.AdminComponent
       import SkygardenWeb.Admin.WizardComponent
+      import SkygardenWeb.Dashboard.DashboardComponent
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

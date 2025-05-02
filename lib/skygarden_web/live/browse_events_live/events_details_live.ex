@@ -18,11 +18,9 @@ defmodule SkygardenWeb.EventsDetailsLive do
       </div>
     </section>
 
-    <%!-- Main Content with Gradient Overlay --%>
     <div class="relative bg-gradient-to-b from-white/10 to-white pb-16">
       <div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 lg:px-8 -mt-16">
 
-        <%!-- Left: Event Details --%>
         <div class="flex-1 rounded-xl  p-8">
           <span class="inline-block bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full mb-4">Technology</span>
           <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Tech Conference 2025</h1>

@@ -27,6 +27,8 @@ defmodule SkygardenWeb.Router do
     live "/browse-events", BrowseventsLive.Index,:index
     live "/browse-events/:id", EventsDetailsLive, :index
     live "/browse-events/:id/buy-tickets", SkygardenWeb.BuyTicketsLive, :index
+    # To add authentication routes
+    live "/dashboard", Dashboard.Index, :index
   end
 
   # Other scopes may use custom stacks.
@@ -77,7 +79,6 @@ defmodule SkygardenWeb.Router do
 
       scope "/admin" do
         live "/dashboard", AdminLive.Index, :index
-
         # Event management routes
         live "/events", EventLive.Index, :index
         live "/events/new", EventLive.Wizard , :new
