@@ -1,6 +1,44 @@
-<main>
-    <div>
-      <.flash_group flash={@flash} />
-      {@inner_content}
+<main class="flex flex-col">
+  <div class="w-full max-w-[90%] mx-auto flex flex-col space-y-4 py-12">
+    <div class="w-full flex flex-row space-x-4 items-start justify-start">
+      <div class="flex space-x-4 items-center justify-center">
+        <img
+          src="#"
+          alt=""
+          class="rounded-full bg-cover bg-center w-40 h-40 bg-black"
+        />
+      </div>
+      <div class="flex flex-col space-y-4">
+        <div class="w-full">
+          <h1 class="text-[24px] md:text-[40px] font-bold">John Doe</h1>
+          <h4 class="text-[14px] md:text-[16px]">johndoe@gmail.com</h4>
+        </div>
+        <div class="flex flex-row">
+          <ul class="flex flex-row w-full">
+            <li
+              class="items-center flex flex-col justify-center border-r-[1px] border-gray-300 px-4"
+            >
+              <h5 class="text-center font-bold text-[18px]">3</h5>
+              <p>Events Attended</p>
+            </li>
+            <li
+              class="items-center flex flex-col justify-center border-r-[1px] border-l-[1px] border-gray-300 px-4"
+            >
+              <h5 class="text-center font-bold text-[18px]">4</h5>
+              <p>Saved Events</p>
+            </li>
+            <li
+              class="items-center flex flex-col justify-center border-l-[1px] border-gray-300 px-4"
+            >
+              <h5 class="text-center font-bold text-[18px]">5</h5>
+              <p>Reviews</p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </main>
+    <div class="">
+      <div class=""><.flash_group flash={@flash} /> {@inner_content}</div>
+    </div>
+  </div>
+</main>
