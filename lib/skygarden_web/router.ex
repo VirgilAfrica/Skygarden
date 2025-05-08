@@ -86,9 +86,15 @@ defmodule SkygardenWeb.Router do
         live "/events/:id/edit", EventLive.Index, :edit
         live "/events/:id", EventLive.Show, :show
         live "/events/:id/show/edit", EventLive.Show, :edit
+      end
 
-
-
+      scope "/dashboard" do
+        live "/overview", Dashboard.Index, :index
+        live "/my_tickets", Dashboard.Show, :index
+        live "/my_tickets/:id", Dashboard.Show, :show
+        live "/saved_tickets", Dashboard.Show, :index
+        live "/saved_tickets/:id", Dashboard.Show, :show
+        live "/notifications", Dashboard.Show, :index
       end
     end
   end

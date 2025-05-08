@@ -56,16 +56,15 @@ defmodule SkygardenWeb.EventLive.Wizard do
 
     changeset = Events.change_event(%Event{}, merged_params)
 
-    if changeset.valid? do
+      IO.inspect(changeset, label: "Changeset")
+
       {:noreply,
         assign(socket,
           event_params: merged_params,
           step: :upload_media,
           event_changeset: changeset
         )}
-    else
-      {:noreply, assign(socket, event_changeset: changeset)}
-    end
+      # {:noreply, assign(socket, event_changeset: changeset)}
   end
 
   defp combine_date_and_times(params) do

@@ -1,6 +1,7 @@
 defmodule SkygardenWeb.Admin.AdminComponent do
   use Phoenix.Component
 
+
   def admin_layout(assigns)do
     ~H"""
     <section class="w-full h-auto w-full h-auto bg-black">
@@ -9,6 +10,7 @@ defmodule SkygardenWeb.Admin.AdminComponent do
     <.analytics_card/>
     <.sales_analytics/>
     <.recent_orders/>
+    <%!-- <.wizard_layout/> --%>
       <%!-- <.create_event/> --%>
       </div>
     </section>
