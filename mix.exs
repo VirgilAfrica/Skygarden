@@ -62,7 +62,6 @@ defmodule Skygarden.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:number, "~> 1.0"},
-      {:dns_cluster, "~> 0.1.1"},
       {:secure_random, "~> 0.5"},
       {:scrivener_ecto, "~> 2.0"},
     ]

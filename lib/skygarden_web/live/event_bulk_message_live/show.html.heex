@@ -1,0 +1,32 @@
+<.header>
+  Event bulk message {@event_bulk_message.id}
+  <:subtitle>This is a event_bulk_message record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/event_bulk_messages/#{@event_bulk_message}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit event_bulk_message</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Text">{@event_bulk_message.text}</:item>
+  <:item title="Send at">{@event_bulk_message.send_at}</:item>
+  <:item title="Active">{@event_bulk_message.active}</:item>
+  <:item title="Sent">{@event_bulk_message.sent}</:item>
+  <:item title="Number of users sent to">{@event_bulk_message.number_of_users_sent_to}</:item>
+  <:item title="Send via">{@event_bulk_message.send_via}</:item>
+  <:item title="Send to a specific ticket group">{@event_bulk_message.send_to_a_specific_ticket_group}</:item>
+</.list>
+
+<.back navigate={~p"/event_bulk_messages"}>Back to event_bulk_messages</.back>
+
+<.modal :if={@live_action == :edit} id="event_bulk_message-modal" show on_cancel={JS.patch(~p"/event_bulk_messages/#{@event_bulk_message}")}>
+  <.live_component
+    module={SkygardenWeb.EventBulkMessageLive.FormComponent}
+    id={@event_bulk_message.id}
+    title={@page_title}
+    action={@live_action}
+    event_bulk_message={@event_bulk_message}
+    patch={~p"/event_bulk_messages/#{@event_bulk_message}"}
+  />
+</.modal>

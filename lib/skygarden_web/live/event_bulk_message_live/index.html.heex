@@ -1,0 +1,47 @@
+<.header>
+  Listing Event bulk messages
+  <:actions>
+    <.link patch={~p"/event_bulk_messages/new"}>
+      <.button>New Event bulk message</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="event_bulk_messages"
+  rows={@streams.event_bulk_messages}
+  row_click={fn {_id, event_bulk_message} -> JS.navigate(~p"/event_bulk_messages/#{event_bulk_message}") end}
+>
+  <:col :let={{_id, event_bulk_message}} label="Text">{event_bulk_message.text}</:col>
+  <:col :let={{_id, event_bulk_message}} label="Send at">{event_bulk_message.send_at}</:col>
+  <:col :let={{_id, event_bulk_message}} label="Active">{event_bulk_message.active}</:col>
+  <:col :let={{_id, event_bulk_message}} label="Sent">{event_bulk_message.sent}</:col>
+  <:col :let={{_id, event_bulk_message}} label="Number of users sent to">{event_bulk_message.number_of_users_sent_to}</:col>
+  <:col :let={{_id, event_bulk_message}} label="Send via">{event_bulk_message.send_via}</:col>
+  <:col :let={{_id, event_bulk_message}} label="Send to a specific ticket group">{event_bulk_message.send_to_a_specific_ticket_group}</:col>
+  <:action :let={{_id, event_bulk_message}}>
+    <div class="sr-only">
+      <.link navigate={~p"/event_bulk_messages/#{event_bulk_message}"}>Show</.link>
+    </div>
+    <.link patch={~p"/event_bulk_messages/#{event_bulk_message}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, event_bulk_message}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: event_bulk_message.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="event_bulk_message-modal" show on_cancel={JS.patch(~p"/event_bulk_messages")}>
+  <.live_component
+    module={SkygardenWeb.EventBulkMessageLive.FormComponent}
+    id={@event_bulk_message.id || :new}
+    title={@page_title}
+    action={@live_action}
+    event_bulk_message={@event_bulk_message}
+    patch={~p"/event_bulk_messages"}
+  />
+</.modal>

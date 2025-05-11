@@ -48,9 +48,6 @@ defmodule SkygardenWeb.EventLive.FormComponent do
           label="Send Buy Now Pay Later Reminders Every"
         />
         <.input field={@form[:active]} type="checkbox" label="Active" />
-        <%!-- <.input field={@form[:slug]} type="text" label="Slug" /> --%>
-
-        <%!-- <.input field={@form[:remind_after]} type="number" label="Remind after" /> --%>
         <:actions>
           <.button phx-disable-with="Saving...">Save Event</.button>
         </:actions>
@@ -124,7 +121,6 @@ defmodule SkygardenWeb.EventLive.FormComponent do
   end
 
   defp save_event(socket, :edit, event_params) do
-
     event_params =
       if Map.has_key?(socket.assigns.form.source.changes, :name)do
         event_params
