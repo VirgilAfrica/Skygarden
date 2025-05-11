@@ -1,4 +1,6 @@
 defmodule SkygardenWeb.Router do
+  alias SkygardenWeb.PaymentSuccessLive
+  alias SkygardenWeb.BrowseEventsLive.DetailsLive
   use SkygardenWeb, :router
 
   import SkygardenWeb.UserAuth
@@ -22,13 +24,15 @@ defmodule SkygardenWeb.Router do
 
     # get "/", PageController, :home
     live "/", LandingLive.Index, :index
-    # get "/", PageController, :home
     live "/landing", LandingLive.Index, :index
     live "/browse-events", BrowseventsLive.Index,:index
     live "/browse-events/:id", EventsDetailsLive, :index
-    live "/browse-events/:id/buy-tickets", SkygardenWeb.BuyTicketsLive, :index
-    # To add authentication routes
-    live "/dashboard", Dashboard.Index, :index
+    live "/browse-events/:id/details", DetailsLive, :index
+    live "/browse-events/:id/buy-tickets", BuyTicketsLive, :index
+    live "/browse-events/:id/checkout", CheckoutLive, :index
+    live "/browse-events/:id/paymentsuccess", PaymentSuccessLive, :index
+
+
   end
 
   # Other scopes may use custom stacks.

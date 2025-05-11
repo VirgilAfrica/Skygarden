@@ -3,7 +3,6 @@ defmodule SkygardenWeb.EventsComponentsId do
 
   def events_components(assigns)do
     ~H"""
-    <section> </section>
     """
   end
 
