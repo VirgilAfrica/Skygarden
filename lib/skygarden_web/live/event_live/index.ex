@@ -12,7 +12,12 @@ defmodule SkygardenWeb.EventLive.Index do
     stream(
       socket,
       :events,
-      Events.list_events()
+      # list events for a user
+      Events.list_events(
+        # socket.assigns.current_user.id,
+        # socket.assigns.current_user.role,
+        # socket.assigns.current_user.super_admin
+      )
       )}
 
   end
