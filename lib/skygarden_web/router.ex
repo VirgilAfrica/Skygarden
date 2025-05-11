@@ -131,6 +131,13 @@ defmodule SkygardenWeb.Router do
 
         live "/sub_accounts/:id", SubAccountLive.Show, :show
         live "/sub_accounts/:id/show/edit", SubAccountLive.Show, :edit
+        #event users
+        live "/event_users", EventUserLive.Index, :index
+        live "/event_users/new", EventUserLive.Index, :new
+        live "/event_users/:id/edit", EventUserLive.Index, :edit
+
+        live "/event_users/:id", EventUserLive.Show, :show
+        live "/event_users/:id/show/edit", EventUserLive.Show, :edit
 
       end
 

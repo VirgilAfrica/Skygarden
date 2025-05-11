@@ -1,0 +1,26 @@
+<.header>
+  Event user {@event_user.id}
+  <:subtitle>This is a event_user record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/event_users/#{@event_user}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit event_user</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Role">{@event_user.role}</:item>
+</.list>
+
+<.back navigate={~p"/event_users"}>Back to event_users</.back>
+
+<.modal :if={@live_action == :edit} id="event_user-modal" show on_cancel={JS.patch(~p"/event_users/#{@event_user}")}>
+  <.live_component
+    module={SkygardenWeb.EventUserLive.FormComponent}
+    id={@event_user.id}
+    title={@page_title}
+    action={@live_action}
+    event_user={@event_user}
+    patch={~p"/event_users/#{@event_user}"}
+  />
+</.modal>

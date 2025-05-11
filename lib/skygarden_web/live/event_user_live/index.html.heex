@@ -1,0 +1,41 @@
+<.header>
+  Listing Event users
+  <:actions>
+    <.link patch={~p"/event_users/new"}>
+      <.button>New Event user</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="event_users"
+  rows={@streams.event_users}
+  row_click={fn {_id, event_user} -> JS.navigate(~p"/event_users/#{event_user}") end}
+>
+  <:col :let={{_id, event_user}} label="Role">{event_user.role}</:col>
+  <:action :let={{_id, event_user}}>
+    <div class="sr-only">
+      <.link navigate={~p"/event_users/#{event_user}"}>Show</.link>
+    </div>
+    <.link patch={~p"/event_users/#{event_user}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, event_user}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: event_user.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="event_user-modal" show on_cancel={JS.patch(~p"/event_users")}>
+  <.live_component
+    module={SkygardenWeb.EventUserLive.FormComponent}
+    id={@event_user.id || :new}
+    title={@page_title}
+    action={@live_action}
+    event_user={@event_user}
+    patch={~p"/event_users"}
+  />
+</.modal>

@@ -3,6 +3,7 @@ defmodule SkygardenWeb.SubAccountLive.Index do
 
   alias Skygarden.Payments
   alias Skygarden.Payments.SubAccount
+  alias Skygarden.Accounts
 
   @impl true
   def mount(_params, _session, socket) do
