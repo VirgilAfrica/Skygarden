@@ -110,6 +110,13 @@ defmodule SkygardenWeb.Router do
 
         live "/ticket_types/:id", TicketTypeLive.Show, :show
         live "/ticket_types/:id/show/edit", TicketTypeLive.Show, :edit
+        # Payment
+        live "/ticket_payments", TicketPaymentLive.Index, :index
+        live "/ticket_payments/new", TicketPaymentLive.Index, :new
+        live "/ticket_payments/:id/edit", TicketPaymentLive.Index, :edit
+
+        live "/ticket_payments/:id", TicketPaymentLive.Show, :show
+        live "/ticket_payments/:id/show/edit", TicketPaymentLive.Show, :edit
 
       end
 

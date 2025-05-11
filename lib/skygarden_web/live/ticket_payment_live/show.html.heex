@@ -1,0 +1,30 @@
+<.header>
+  Ticket payment {@ticket_payment.id}
+  <:subtitle>This is a ticket_payment record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/ticket_payments/#{@ticket_payment}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit ticket_payment</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Price">{@ticket_payment.price}</:item>
+  <:item title="Phone number">{@ticket_payment.phone_number}</:item>
+  <:item title="Email">{@ticket_payment.email}</:item>
+  <:item title="Payment method">{@ticket_payment.payment_method}</:item>
+  <:item title="Transaction">{@ticket_payment.transaction_id}</:item>
+</.list>
+
+<.back navigate={~p"/ticket_payments"}>Back to ticket_payments</.back>
+
+<.modal :if={@live_action == :edit} id="ticket_payment-modal" show on_cancel={JS.patch(~p"/ticket_payments/#{@ticket_payment}")}>
+  <.live_component
+    module={SkygardenWeb.TicketPaymentLive.FormComponent}
+    id={@ticket_payment.id}
+    title={@page_title}
+    action={@live_action}
+    ticket_payment={@ticket_payment}
+    patch={~p"/ticket_payments/#{@ticket_payment}"}
+  />
+</.modal>
