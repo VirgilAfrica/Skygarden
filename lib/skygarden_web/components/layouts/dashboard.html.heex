@@ -48,7 +48,7 @@
                     <div class="flex-1 overflow-y-auto">
                       <nav class="mt-4 px-2 space-y-1">
                         <a
-                          href="/dashboard"
+                          href="/dashboard/overview"
                           class={"flex items-center px-4 py-3 #{if @active_tab == "Dashboard" do "textblack bg-blue-800" else "text-gray-300 hover:bg-blue-600 hover:text-white" end} rounded-md group transition-colors"}
                         >
                           <i class={"fas fa-user mr-3 #{if @active_tab == "Dashboard" do "text-white" else "text-gray-400 group-hover:text-yellow-400" end}"}>
@@ -56,7 +56,7 @@
                           <span>Overview</span>
                         </a>
                         <a
-                          href="#"
+                          href="/dashboard/my_tickets"
                           class={"flex items-center px-4 py-3 #{if @active_tab == "My tickets" do " bg-blue-800" else "text-black hover:bg-blue-600 hover:text-white" end} rounded-md group transition-colors"}
                         >
                           <i class={"fas fa-ticket mr-3 #{if @active_tab == "My tickets" do "text-white" else "tet-blue-500 font-bold group-hover:text-white" end}"}>
@@ -64,7 +64,7 @@
                           <span>My Tickets</span>
                         </a>
                         <a
-                          href="#"
+                          href="/dashboard/saved_events"
                           class={"flex items-center px-4 py-3 #{if @active_tab == "Saved events" do " bg-blue-800" else "text-black hover:bg-blue-600 hover:text-white" end} rounded-md group transition-colors"}
                         >
                           <i class={"fas fa-heart mr-3 #{if @active_tab == "Saved Events" do "text-white" else "tet-blue-500 font-bold group-hover:text-white" end}"}>
@@ -73,7 +73,7 @@
                         </a>
           
                         <a
-                          href="#"
+                          href="/dashboard/notifications"
                           class={"flex items-center px-4 py-3 #{if @active_tab == "Notifications" do " bg-blue-800" else "text-black hover:bg-blue-600 hover:text-white" end} rounded-md group transition-colors"}
                         >
                           <i class={"fas fa-bell mr-3 #{if @active_tab == "Notifications" do "text-white" else "tet-blue-500 font-bold group-hover:text-white" end}"}>
@@ -81,7 +81,7 @@
                           <span>Notifications</span>
                         </a>
                         <a
-                          href="#"
+                          href="/users/settings"
                           class={"flex items-center px-4 py-3 #{if @active_tab == "settings" do " bg-blue-800" else "text-black hover:bg-blue-600 hover:text-white" end} rounded-md group transition-colors"}
                         >
                           <i class={"fa fa-cog mr-3 #{if @active_tab == "Settings" do "text-white" else "tet-blue-500 font-bold group-hover:text-white" end}"}>

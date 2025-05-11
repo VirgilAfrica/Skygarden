@@ -21,7 +21,14 @@ defmodule SkygardenWeb.EventLive.FormComponent do
       >
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:description]} type="text" label="Description" />
-        <.input field={@form[:poster_image]} type="text" label="Poster image" />
+        <.image_input
+          ref={@uploads.poster_image.ref}
+          entries={@uploads.poster_image.entries}
+          image={@uploads.poster_image}
+          image_name="Poster image"
+          myself={@myself}
+          current_image={@event && @event.poster_image}
+        />
         <.input field={@form[:date]} type="date" label="Date" />
         <.input field={@form[:start_time]} type="time" label="Start time" />
         <.input field={@form[:location]} type="text" label="Location" />
