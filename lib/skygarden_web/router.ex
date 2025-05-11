@@ -124,6 +124,13 @@ defmodule SkygardenWeb.Router do
 
         live "/reminders/:id", ReminderLive.Show, :show
         live "/reminders/:id/show/edit", ReminderLive.Show, :edit
+        # SubAccounts
+        live "/sub_accounts", SubAccountLive.Index, :index
+        live "/sub_accounts/new", SubAccountLive.Index, :new
+        live "/sub_accounts/:id/edit", SubAccountLive.Index, :edit
+
+        live "/sub_accounts/:id", SubAccountLive.Show, :show
+        live "/sub_accounts/:id/show/edit", SubAccountLive.Show, :edit
 
       end
 

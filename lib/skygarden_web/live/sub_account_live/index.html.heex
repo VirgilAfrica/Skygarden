@@ -1,0 +1,47 @@
+<.header>
+  Listing Sub accounts
+  <:actions>
+    <.link patch={~p"/sub_accounts/new"}>
+      <.button>New Sub account</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="sub_accounts"
+  rows={@streams.sub_accounts}
+  row_click={fn {_id, sub_account} -> JS.navigate(~p"/sub_accounts/#{sub_account}") end}
+>
+  <:col :let={{_id, sub_account}} label="Account name">{sub_account.account_name}</:col>
+  <:col :let={{_id, sub_account}} label="Account number">{sub_account.account_number}</:col>
+  <:col :let={{_id, sub_account}} label="Currency">{sub_account.currency}</:col>
+  <:col :let={{_id, sub_account}} label="Settlement bank">{sub_account.settlement_bank}</:col>
+  <:col :let={{_id, sub_account}} label="Subaccount code">{sub_account.subaccount_code}</:col>
+  <:col :let={{_id, sub_account}} label="Percentage split">{sub_account.percentage_split}</:col>
+  <:col :let={{_id, sub_account}} label="Bank code">{sub_account.bank_code}</:col>
+  <:action :let={{_id, sub_account}}>
+    <div class="sr-only">
+      <.link navigate={~p"/sub_accounts/#{sub_account}"}>Show</.link>
+    </div>
+    <.link patch={~p"/sub_accounts/#{sub_account}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, sub_account}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: sub_account.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="sub_account-modal" show on_cancel={JS.patch(~p"/sub_accounts")}>
+  <.live_component
+    module={SkygardenWeb.SubAccountLive.FormComponent}
+    id={@sub_account.id || :new}
+    title={@page_title}
+    action={@live_action}
+    sub_account={@sub_account}
+    patch={~p"/sub_accounts"}
+  />
+</.modal>
