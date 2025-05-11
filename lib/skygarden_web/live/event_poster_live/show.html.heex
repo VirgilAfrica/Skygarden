@@ -1,0 +1,26 @@
+<.header>
+  Event poster {@event_poster.id}
+  <:subtitle>This is a event_poster record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/event_posters/#{@event_poster}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit event_poster</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Image">{@event_poster.image}</:item>
+</.list>
+
+<.back navigate={~p"/event_posters"}>Back to event_posters</.back>
+
+<.modal :if={@live_action == :edit} id="event_poster-modal" show on_cancel={JS.patch(~p"/event_posters/#{@event_poster}")}>
+  <.live_component
+    module={SkygardenWeb.EventPosterLive.FormComponent}
+    id={@event_poster.id}
+    title={@page_title}
+    action={@live_action}
+    event_poster={@event_poster}
+    patch={~p"/event_posters/#{@event_poster}"}
+  />
+</.modal>

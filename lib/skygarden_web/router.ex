@@ -96,6 +96,13 @@ defmodule SkygardenWeb.Router do
         live "/event_bulk_messages/:id/edit", EventBulkMessageLive.Index, :edit
         live "/event_bulk_messages/:id", EventBulkMessageLive.Show, :show
         live "/event_bulk_messages/:id/show/edit", EventBulkMessageLive.Show, :edit
+        # Event poster
+        live "/event_posters", EventPosterLive.Index, :index
+        live "/event_posters/new", EventPosterLive.Index, :new
+        live "/event_posters/:id/edit", EventPosterLive.Index, :edit
+
+        live "/event_posters/:id", EventPosterLive.Show, :show
+        live "/event_posters/:id/show/edit", EventPosterLive.Show, :edit
       end
 
       scope "/dashboard" do
