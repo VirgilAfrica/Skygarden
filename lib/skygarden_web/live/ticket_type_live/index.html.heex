@@ -1,0 +1,50 @@
+<.header>
+  Listing Ticket types
+  <:actions>
+    <.link patch={~p"/ticket_types/new"}>
+      <.button>New Ticket type</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="ticket_types"
+  rows={@streams.ticket_types}
+  row_click={fn {_id, ticket_type} -> JS.navigate(~p"/ticket_types/#{ticket_type}") end}
+>
+  <:col :let={{_id, ticket_type}} label="Name">{ticket_type.name}</:col>
+  <:col :let={{_id, ticket_type}} label="Price">{ticket_type.price}</:col>
+  <:col :let={{_id, ticket_type}} label="Active">{ticket_type.active}</:col>
+  <:col :let={{_id, ticket_type}} label="Complimentary">{ticket_type.complimentary}</:col>
+  <:col :let={{_id, ticket_type}} label="Description">{ticket_type.description}</:col>
+  <:col :let={{_id, ticket_type}} label="Activate on">{ticket_type.activate_on}</:col>
+  <:col :let={{_id, ticket_type}} label="Deactivate on">{ticket_type.deactivate_on}</:col>
+  <:col :let={{_id, ticket_type}} label="Ticket cap">{ticket_type.ticket_cap}</:col>
+  <:col :let={{_id, ticket_type}} label="Admits">{ticket_type.admits}</:col>
+  <:col :let={{_id, ticket_type}} label="Display bnpl option">{ticket_type.display_bnpl_option}</:col>
+  <:action :let={{_id, ticket_type}}>
+    <div class="sr-only">
+      <.link navigate={~p"/ticket_types/#{ticket_type}"}>Show</.link>
+    </div>
+    <.link patch={~p"/ticket_types/#{ticket_type}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, ticket_type}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: ticket_type.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="ticket_type-modal" show on_cancel={JS.patch(~p"/ticket_types")}>
+  <.live_component
+    module={SkygardenWeb.TicketTypeLive.FormComponent}
+    id={@ticket_type.id || :new}
+    title={@page_title}
+    action={@live_action}
+    ticket_type={@ticket_type}
+    patch={~p"/ticket_types"}
+  />
+</.modal>
