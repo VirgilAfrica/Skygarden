@@ -1,0 +1,44 @@
+<.header>
+  Listing Reminders
+  <:actions>
+    <.link patch={~p"/reminders/new"}>
+      <.button>New Reminder</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="reminders"
+  rows={@streams.reminders}
+  row_click={fn {_id, reminder} -> JS.navigate(~p"/reminders/#{reminder}") end}
+>
+  <:col :let={{_id, reminder}} label="Text">{reminder.text}</:col>
+  <:col :let={{_id, reminder}} label="Sent via">{reminder.sent_via}</:col>
+  <:col :let={{_id, reminder}} label="Email">{reminder.email}</:col>
+  <:col :let={{_id, reminder}} label="Phone number">{reminder.phone_number}</:col>
+  <:action :let={{_id, reminder}}>
+    <div class="sr-only">
+      <.link navigate={~p"/reminders/#{reminder}"}>Show</.link>
+    </div>
+    <.link patch={~p"/reminders/#{reminder}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, reminder}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: reminder.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="reminder-modal" show on_cancel={JS.patch(~p"/reminders")}>
+  <.live_component
+    module={SkygardenWeb.ReminderLive.FormComponent}
+    id={@reminder.id || :new}
+    title={@page_title}
+    action={@live_action}
+    reminder={@reminder}
+    patch={~p"/reminders"}
+  />
+</.modal>
