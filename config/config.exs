@@ -22,6 +22,15 @@ config :skygarden, SkygardenWeb.Endpoint,
   pubsub_server: Skygarden.PubSub,
   live_view: [signing_salt: "ceM6p4/t"]
 
+  # Oban Configuration
+  config :skygarden, Oban,
+  repo: Skygarden.Repo,
+  plugins: [{Oban.Plugins.Pruner, max_age: 300}],
+  queues: [default: 100]
+
+
+
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

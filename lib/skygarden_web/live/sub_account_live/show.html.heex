@@ -1,0 +1,32 @@
+<.header>
+  Sub account {@sub_account.id}
+  <:subtitle>This is a sub_account record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/sub_accounts/#{@sub_account}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit sub_account</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Account name">{@sub_account.account_name}</:item>
+  <:item title="Account number">{@sub_account.account_number}</:item>
+  <:item title="Currency">{@sub_account.currency}</:item>
+  <:item title="Settlement bank">{@sub_account.settlement_bank}</:item>
+  <:item title="Subaccount code">{@sub_account.subaccount_code}</:item>
+  <:item title="Percentage split">{@sub_account.percentage_split}</:item>
+  <:item title="Bank code">{@sub_account.bank_code}</:item>
+</.list>
+
+<.back navigate={~p"/sub_accounts"}>Back to sub_accounts</.back>
+
+<.modal :if={@live_action == :edit} id="sub_account-modal" show on_cancel={JS.patch(~p"/sub_accounts/#{@sub_account}")}>
+  <.live_component
+    module={SkygardenWeb.SubAccountLive.FormComponent}
+    id={@sub_account.id}
+    title={@page_title}
+    action={@live_action}
+    sub_account={@sub_account}
+    patch={~p"/sub_accounts/#{@sub_account}"}
+  />
+</.modal>

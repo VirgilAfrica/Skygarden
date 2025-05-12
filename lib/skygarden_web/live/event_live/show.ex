@@ -10,10 +10,22 @@ defmodule SkygardenWeb.EventLive.Show do
 
   @impl true
   def handle_params(%{"id" => id}, _, socket) do
+    event = Events.get_event!(id)
+
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:event, Events.get_event!(id))}
+     |> assign(:event, event)}
+     |> assign(:show_event, show_event(socket.assigns.current_user, event))
+  end
+
+  defp show_event(user, event)do
+    # Add super admins later
+    if user.id == event.user_id do
+      true
+    else
+      false
+    end
   end
 
   defp page_title(:show), do: "Show Event"

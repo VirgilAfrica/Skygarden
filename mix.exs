@@ -56,9 +56,15 @@ defmodule Skygarden.MixProject do
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.26"},
+      {:slugify, "~> 1.3"},
+      {:httpoison, "~> 2.1"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      {:number, "~> 1.0"},
+      {:oban, "~> 2.17"},
+      {:secure_random, "~> 0.5"},
+      {:scrivener_ecto, "~> 2.0"},
     ]
   end
 

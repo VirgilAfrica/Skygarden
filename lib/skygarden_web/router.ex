@@ -83,17 +83,78 @@ defmodule SkygardenWeb.Router do
 
       scope "/admin" do
         live "/dashboard", AdminLive.Index, :index
-
         # Event management routes
         live "/events", EventLive.Index, :index
-        live "/events/new", EventLive.Wizard , :new
-        # live "/events/new", EventLive.Index, :new
+        # live "/events/new", EventLive.Wizard , :new
+        live "/events/new", EventLive.Index, :new
         live "/events/:id/edit", EventLive.Index, :edit
         live "/events/:id", EventLive.Show, :show
         live "/events/:id/show/edit", EventLive.Show, :edit
+        # event bulk
+        live "/event_bulk_messages", EventBulkMessageLive.Index, :index
+        live "/event_bulk_messages/new", EventBulkMessageLive.Index, :new
+        live "/event_bulk_messages/:id/edit", EventBulkMessageLive.Index, :edit
+        live "/event_bulk_messages/:id", EventBulkMessageLive.Show, :show
+        live "/event_bulk_messages/:id/show/edit", EventBulkMessageLive.Show, :edit
+        # Event poster
+        live "/event_posters", EventPosterLive.Index, :index
+        live "/event_posters/new", EventPosterLive.Index, :new
+        live "/event_posters/:id/edit", EventPosterLive.Index, :edit
 
+        live "/event_posters/:id", EventPosterLive.Show, :show
+        live "/event_posters/:id/show/edit", EventPosterLive.Show, :edit
+        # TicketType:
+        live "/ticket_types", TicketTypeLive.Index, :index
+        live "/ticket_types/new", TicketTypeLive.Index, :new
+        live "/ticket_types/:id/edit", TicketTypeLive.Index, :edit
 
+        live "/ticket_types/:id", TicketTypeLive.Show, :show
+        live "/ticket_types/:id/show/edit", TicketTypeLive.Show, :edit
+        # Payment
+        live "/ticket_payments", TicketPaymentLive.Index, :index
+        live "/ticket_payments/new", TicketPaymentLive.Index, :new
+        live "/ticket_payments/:id/edit", TicketPaymentLive.Index, :edit
 
+        live "/ticket_payments/:id", TicketPaymentLive.Show, :show
+        live "/ticket_payments/:id/show/edit", TicketPaymentLive.Show, :edit
+        # Reminder
+        live "/reminders", ReminderLive.Index, :index
+        live "/reminders/new", ReminderLive.Index, :new
+        live "/reminders/:id/edit", ReminderLive.Index, :edit
+
+        live "/reminders/:id", ReminderLive.Show, :show
+        live "/reminders/:id/show/edit", ReminderLive.Show, :edit
+        # SubAccounts
+        live "/sub_accounts", SubAccountLive.Index, :index
+        live "/sub_accounts/new", SubAccountLive.Index, :new
+        live "/sub_accounts/:id/edit", SubAccountLive.Index, :edit
+
+        live "/sub_accounts/:id", SubAccountLive.Show, :show
+        live "/sub_accounts/:id/show/edit", SubAccountLive.Show, :edit
+        #event users
+        live "/event_users", EventUserLive.Index, :index
+        live "/event_users/new", EventUserLive.Index, :new
+        live "/event_users/:id/edit", EventUserLive.Index, :edit
+
+        live "/event_users/:id", EventUserLive.Show, :show
+        live "/event_users/:id/show/edit", EventUserLive.Show, :edit
+      #  paymentplans
+        live "/payment_plans", PaymentPlanLive.Index, :index
+        live "/payment_plans/new", PaymentPlanLive.Index, :new
+        live "/payment_plans/:id/edit", PaymentPlanLive.Index, :edit
+
+        live "/payment_plans/:id", PaymentPlanLive.Show, :show
+        live "/payment_plans/:id/show/edit", PaymentPlanLive.Show, :edit
+
+      end
+
+      scope "/dashboard" do
+        live "/overview", Dashboard.Index, :index
+        live "/my_tickets", Dashboard.Show, :index
+        live "/my_tickets/:id", Dashboard.Show, :show
+        live "/saved_tickets", Dashboard.Show, :index
+        live "/saved_tickets/:id", Dashboard.Show, :show
+        live "/notifications", Dashboard.Show, :index
       end
     end
   end

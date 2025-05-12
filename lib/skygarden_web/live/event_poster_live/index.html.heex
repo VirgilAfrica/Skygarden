@@ -1,0 +1,41 @@
+<.header>
+  Listing Event posters
+  <:actions>
+    <.link patch={~p"/event_posters/new"}>
+      <.button>New Event poster</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="event_posters"
+  rows={@streams.event_posters}
+  row_click={fn {_id, event_poster} -> JS.navigate(~p"/event_posters/#{event_poster}") end}
+>
+  <:col :let={{_id, event_poster}} label="Image">{event_poster.image}</:col>
+  <:action :let={{_id, event_poster}}>
+    <div class="sr-only">
+      <.link navigate={~p"/event_posters/#{event_poster}"}>Show</.link>
+    </div>
+    <.link patch={~p"/event_posters/#{event_poster}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, event_poster}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: event_poster.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="event_poster-modal" show on_cancel={JS.patch(~p"/event_posters")}>
+  <.live_component
+    module={SkygardenWeb.EventPosterLive.FormComponent}
+    id={@event_poster.id || :new}
+    title={@page_title}
+    action={@live_action}
+    event_poster={@event_poster}
+    patch={~p"/event_posters"}
+  />
+</.modal>

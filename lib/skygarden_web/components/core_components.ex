@@ -388,6 +388,75 @@ defmodule SkygardenWeb.CoreComponents do
     """
   end
 
+  def image_input(assigns)do
+    ~H"""
+    <div>
+      <label class="block my-2 text-sm font-semibold leading-6 text-zinc-800">
+        <%= @image_name %>
+      </label>
+
+      <.live_file_input
+        class="rounded w-[100%] border-zinc-300 text-zinc-900 focus:ring-0"
+        upload={@image}
+      />
+
+      <section class="mt-3" phx-drop-target={@ref}>
+        <%= for entry <- @entries do %>
+          <%= if  @current_image do %>
+            <p>
+              New Image
+            </p>
+            <article class="upload-entry">
+              <figure>
+                <.live_img_preview entry={entry} />
+              </figure>
+
+              <div class="flex items-center gap-3">
+                <progress value={entry.progress} max="100"><%= entry.progress %>%</progress>
+
+                <button
+                  type="button"
+                  phx-click="cancel-upload"
+                  phx-value-ref={entry.ref}
+                  phx-target={@myself}
+                  aria-label="cancel"
+                >
+                  &times;
+                </button>
+              </div>
+
+              <%= for err <- upload_errors(@image, entry) do %>
+                <p class="alert alert-danger"><%= error_to_string(err) %></p>
+              <% end %>
+            </article>
+          <% end %>
+        <% end %>
+
+        <%!-- Phoenix.Component.upload_errors/1 returns a list of error atoms --%>
+        <%= for err <- upload_errors(@image) do %>
+          <p class="alert alert-danger"><%= error_to_string(err) %></p>
+        <% end %>
+      </section>
+
+      <%= if  @current_image do %>
+        <div class="flex gap-2 flex-col">
+          <p>
+            Current Image
+          </p>
+          <img src={@current_image} class="mt-3  h-48 rounded-lg" />
+        </div>
+      <% end %>
+
+    </div>
+    """
+  end
+
+
+  defp error_to_string(:too_large), do: "Too large"
+  defp error_to_string(:not_accepted), do: "You have selected an unacceptable file type"
+  defp error_to_string(:too_many_files), do: "You have selected too many files"
+
+  
   @doc """
   Renders a label.
   """

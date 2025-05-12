@@ -1,0 +1,42 @@
+<.header>
+  Listing Payment plans
+  <:actions>
+    <.link patch={~p"/payment_plans/new"}>
+      <.button>New Payment plan</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="payment_plans"
+  rows={@streams.payment_plans}
+  row_click={fn {_id, payment_plan} -> JS.navigate(~p"/payment_plans/#{payment_plan}") end}
+>
+  <:col :let={{_id, payment_plan}} label="Installments">{payment_plan.installments}</:col>
+  <:col :let={{_id, payment_plan}} label="Interest">{payment_plan.interest}</:col>
+  <:action :let={{_id, payment_plan}}>
+    <div class="sr-only">
+      <.link navigate={~p"/payment_plans/#{payment_plan}"}>Show</.link>
+    </div>
+    <.link patch={~p"/payment_plans/#{payment_plan}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, payment_plan}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: payment_plan.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="payment_plan-modal" show on_cancel={JS.patch(~p"/payment_plans")}>
+  <.live_component
+    module={SkygardenWeb.PaymentPlanLive.FormComponent}
+    id={@payment_plan.id || :new}
+    title={@page_title}
+    action={@live_action}
+    payment_plan={@payment_plan}
+    patch={~p"/payment_plans"}
+  />
+</.modal>

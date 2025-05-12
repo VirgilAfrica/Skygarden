@@ -2,7 +2,7 @@ defmodule SkygardenWeb.EventsDetailsLive do
   use Phoenix.LiveView
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, action: "details")} 
+    {:ok, assign(socket, action: "details")}
   end
 
   def handle_event("set_action", %{"action" => action}, socket) do

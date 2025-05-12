@@ -1,0 +1,45 @@
+<.header>
+  Listing Ticket payments
+  <:actions>
+    <.link patch={~p"/ticket_payments/new"}>
+      <.button>New Ticket payment</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="ticket_payments"
+  rows={@streams.ticket_payments}
+  row_click={fn {_id, ticket_payment} -> JS.navigate(~p"/ticket_payments/#{ticket_payment}") end}
+>
+  <:col :let={{_id, ticket_payment}} label="Price">{ticket_payment.price}</:col>
+  <:col :let={{_id, ticket_payment}} label="Phone number">{ticket_payment.phone_number}</:col>
+  <:col :let={{_id, ticket_payment}} label="Email">{ticket_payment.email}</:col>
+  <:col :let={{_id, ticket_payment}} label="Payment method">{ticket_payment.payment_method}</:col>
+  <:col :let={{_id, ticket_payment}} label="Transaction">{ticket_payment.transaction_id}</:col>
+  <:action :let={{_id, ticket_payment}}>
+    <div class="sr-only">
+      <.link navigate={~p"/ticket_payments/#{ticket_payment}"}>Show</.link>
+    </div>
+    <.link patch={~p"/ticket_payments/#{ticket_payment}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, ticket_payment}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: ticket_payment.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="ticket_payment-modal" show on_cancel={JS.patch(~p"/ticket_payments")}>
+  <.live_component
+    module={SkygardenWeb.TicketPaymentLive.FormComponent}
+    id={@ticket_payment.id || :new}
+    title={@page_title}
+    action={@live_action}
+    ticket_payment={@ticket_payment}
+    patch={~p"/ticket_payments"}
+  />
+</.modal>

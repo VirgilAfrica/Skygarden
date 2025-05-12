@@ -51,20 +51,16 @@ document.addEventListener("DOMContentLoaded", function () {
     menu.classList.toggle('hidden');
   });
 
-  // Dropdown for Categories (mobile)
   const categoriesMenu = document.getElementById('categories-menu');
   const dropdown = categoriesMenu.querySelector('.dropdown-menu');
 
-  // On click for mobile
   categoriesMenu.addEventListener('click', function (e) {
-    // Only activate on mobile
     if (window.innerWidth < 768) {
       e.preventDefault();
       dropdown.classList.toggle('hidden');
     }
   });
 
-  // Optional: Hide dropdown when clicking outside
   document.addEventListener('click', function (e) {
     if (!categoriesMenu.contains(e.target) && window.innerWidth < 768) {
       dropdown.classList.add('hidden');
@@ -132,4 +128,26 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+  const menuOverlay = document.getElementById("menuOverlay");
+  const closeMenu = document.getElementById("closeMenu");
+
+  function openMenu() {
+    mobileNav.classList.remove("-translate-x-full");
+    menuOverlay.classList.remove("hidden");
+  }
+
+  function closeNav() {
+    mobileNav.classList.add("-translate-x-full");
+    menuOverlay.classList.add("hidden");
+  }
+
+  menuToggle.addEventListener("click", openMenu);
+  closeMenu.addEventListener("click", closeNav);
+  menuOverlay.addEventListener("click", closeNav);
 });

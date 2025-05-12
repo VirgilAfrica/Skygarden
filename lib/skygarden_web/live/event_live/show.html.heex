@@ -5,14 +5,38 @@
     <.link patch={~p"/admin/events/#{@event}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit event</.button>
     </.link>
+      <.link patch={~p"/events/#{@event}/dashboard"} phx-click={JS.push_focus()}>
+        <.button>Dashboard</.button>
+      </.link>
+      <.link patch={~p"/events/#{@event}/tickets"} phx-click={JS.push_focus()}>
+        <.button>Tickets</.button>
+      </.link>
+      <.link patch={~p"/events/#{@event}/ticket_types"} phx-click={JS.push_focus()}>
+        <.button>Ticket Types</.button>
+      </.link>
+      <.link patch={~p"/events/#{@event}/event_posters"} phx-click={JS.push_focus()}>
+        <.button>Event Posters</.button>
+      </.link>
+      <.link patch={~p"/events/#{@event}/event_bulk_messages"} phx-click={JS.push_focus()}>
+        <.button>Bulk Messages</.button>
+      </.link>
+      <.link patch={~p"/events/#{@event}/event_users"} phx-click={JS.push_focus()}>
+        <.button>Event Users</.button>
+      </.link>
+      <.link patch={~p"/events/#{@event}/show/edit"} phx-click={JS.push_focus()}>
+        <.button>Edit event</.button>
+      </.link>
   </:actions>
 </.header>
 
 <.list>
   <:item title="Name">{@event.name}</:item>
   <:item title="Description">{@event.description}</:item>
-  <:item title="Poster image">{@event.poster_image}</:item>
-  <:item title="Date">{@event.date}</:item>
+  <:item title="Poster image">
+    <%= if @event.poster_image do %>
+      <img src={@event.poster_image} class="w-[200px] h-[200px]" />
+    <% end %>
+  </:item>  <:item title="Date">{@event.date}</:item>
   <:item title="Start time">{@event.start_time}</:item>
   <:item title="Location">{@event.location}</:item>
   <:item title="End time">{@event.end_time}</:item>

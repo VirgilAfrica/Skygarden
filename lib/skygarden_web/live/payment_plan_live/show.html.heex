@@ -1,0 +1,27 @@
+<.header>
+  Payment plan {@payment_plan.id}
+  <:subtitle>This is a payment_plan record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/payment_plans/#{@payment_plan}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit payment_plan</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Installments">{@payment_plan.installments}</:item>
+  <:item title="Interest">{@payment_plan.interest}</:item>
+</.list>
+
+<.back navigate={~p"/payment_plans"}>Back to payment_plans</.back>
+
+<.modal :if={@live_action == :edit} id="payment_plan-modal" show on_cancel={JS.patch(~p"/payment_plans/#{@payment_plan}")}>
+  <.live_component
+    module={SkygardenWeb.PaymentPlanLive.FormComponent}
+    id={@payment_plan.id}
+    title={@page_title}
+    action={@live_action}
+    payment_plan={@payment_plan}
+    patch={~p"/payment_plans/#{@payment_plan}"}
+  />
+</.modal>

@@ -18,17 +18,18 @@
   row_click={fn {_id, event} -> JS.navigate(~p"/admin/events/#{event}") end}
   
 >
-  <:col :let={{_id, event}} label="Name">{event.name}</:col>
-  <:col :let={{_id, event}} label="Description">{event.description}</:col>
-  <:col :let={{_id, event}} label="Poster image">{event.poster_image}</:col>
-  <:col :let={{_id, event}} label="Date">{event.date}</:col>
-  <:col :let={{_id, event}} label="Start time">{event.start_time}</:col>
-  <:col :let={{_id, event}} label="Location">{event.location}</:col>
-  <:col :let={{_id, event}} label="End time">{event.end_time}</:col>
-  <:col :let={{_id, event}} label="Remind time">{event.remind_time}</:col>
-  <:col :let={{_id, event}} label="Slug">{event.slug}</:col>
-  <:col :let={{_id, event}} label="Active">{event.active}</:col>
-  <:col :let={{_id, event}} label="Remind after">{event.remind_after}</:col>
+<:col :let={{_id, event}} label="Name"><%= event.name %></:col>
+<:col :let={{_id, event}} label="Description"><%= event.description %></:col>
+<:col :let={{_id, event}} label="Location"><%= event.location %></:col>
+<:col :let={{_id, event}} label="Poster image">
+  <%= if event.poster_image do %>
+    <img src={event.poster_image} class="w-[100px] h-[100px]" />
+  <% end %>
+</:col>
+<:col :let={{_id, event}} label="Date"><%= event.date %></:col>
+<:col :let={{_id, event}} label="Start time"><%= event.start_time %></:col>
+<:col :let={{_id, event}} label="End time"><%= event.end_time %></:col>
+<:col :let={{_id, event}} label="Active"><%= event.active %></:col>
   <:action :let={{_id, event}}>
     <div class="sr-only">
       <.link navigate={~p"/admin/events/#{event}"}>Show</.link>
@@ -45,11 +46,16 @@
   </:action>
 </.table>
 
-<.modal :if={@live_action in [:new, :edit]} id="event-modal" show on_cancel={JS.patch(~p"/admin/events")}>
+<.modal 
+:if={@live_action in [:new, :edit]} 
+id="event-modal" 
+show 
+on_cancel={JS.patch(~p"/admin/events")}>
   <.live_component
     module={SkygardenWeb.EventLive.FormComponent}
     id={@event.id || :new}
     title={@page_title}
+    current_user={@current_user}
     action={@live_action}
     event={@event}
     patch={~p"/admin/events"}

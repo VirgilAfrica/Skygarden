@@ -1,9 +1,7 @@
 defmodule SkygardenWeb.Admin.WizardComponent do
   use Phoenix.Component
 
-  # import Phoenix.HTML.Form
-  # import SkygardenWeb.CoreComponents
-  # import Phoenix.LiveView.Helpers
+  import SkygardenWeb.CoreComponents
 
   def wizard_layout(assigns) do
     ~H"""
@@ -56,7 +54,7 @@ defmodule SkygardenWeb.Admin.WizardComponent do
         <% end %>
 
         <%= if @step == :event_details do %>
-          <div class="w-full max-w-[90%] mx-auto">
+          <%!-- <div class="w-full max-w-[90%] mx-auto">
             <h2 class="text[32px] md:text-[40px] font-bold mb-2 text-white text-center">Set Event Details</h2>
             <p class="mb-6 text-gray-300 text-center">Fill in the details about your event, location, and ticket pricing.</p>
             <form phx-submit="save_details" class="text-white">
@@ -160,7 +158,29 @@ defmodule SkygardenWeb.Admin.WizardComponent do
                 </button>
               </div>
             </form>
-          </div>
+          </div> --%>
+          <.simple_form
+        for={@form}
+        id="event-form"
+        phx-target={@myself}
+        phx-change="validate"
+        phx-submit="save"
+      >
+        <.input field={@form[:name]} type="text" label="Name" />
+        <.input field={@form[:description]} type="text" label="Description" />
+        <.input field={@form[:poster_image]} type="text" label="Poster image" />
+        <.input field={@form[:date]} type="date" label="Date" />
+        <.input field={@form[:start_time]} type="time" label="Start time" />
+        <.input field={@form[:location]} type="text" label="Location" />
+        <.input field={@form[:end_time]} type="time" label="End time" />
+        <.input field={@form[:remind_time]} type="time" label="Remind time" />
+        <.input field={@form[:slug]} type="text" label="Slug" />
+        <.input field={@form[:active]} type="checkbox" label="Active" />
+        <.input field={@form[:remind_after]} type="number" label="Remind after" />
+        <:actions>
+          <.button phx-disable-with="Saving...">Save Event</.button>
+        </:actions>
+      </.simple_form>
         <% end %>
 
         <%= if @step == :upload_media do %>

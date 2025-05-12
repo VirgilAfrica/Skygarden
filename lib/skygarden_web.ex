@@ -17,7 +17,7 @@ defmodule SkygardenWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
+  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt uploads)
 
   def router do
     quote do
@@ -53,6 +53,15 @@ defmodule SkygardenWeb do
     quote do
       use Phoenix.LiveView,
         layout: {SkygardenWeb.Layouts, :admin}
+
+      unquote(html_helpers())
+    end
+  end
+
+  def dashboard_live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {SkygardenWeb.Layouts, :dashboard}
 
       unquote(html_helpers())
     end
@@ -103,6 +112,7 @@ defmodule SkygardenWeb do
       import SkygardenWeb.BrowseEvents.BrowseEvents
       import SkygardenWeb.Admin.AdminComponent
       import SkygardenWeb.Admin.WizardComponent
+      import SkygardenWeb.Dashboard.DashboardComponent
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
