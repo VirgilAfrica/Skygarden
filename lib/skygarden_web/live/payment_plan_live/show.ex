@@ -1,8 +1,7 @@
-defmodule SkygardenWeb.SubAccountLive.Show do
+defmodule SkygardenWeb.PaymentPlanLive.Show do
   use SkygardenWeb, :live_view
 
   alias Skygarden.Payments
-
 
   @impl true
   def mount(_params, _session, socket) do
@@ -14,9 +13,9 @@ defmodule SkygardenWeb.SubAccountLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:sub_account, Payments.get_sub_account!(id))}
+     |> assign(:payment_plan, Payments.get_payment_plan!(id))}
   end
 
-  defp page_title(:show), do: "Show Sub account"
-  defp page_title(:edit), do: "Edit Sub account"
+  defp page_title(:show), do: "Show Payment plan"
+  defp page_title(:edit), do: "Edit Payment plan"
 end

@@ -138,6 +138,13 @@ defmodule SkygardenWeb.Router do
 
         live "/event_users/:id", EventUserLive.Show, :show
         live "/event_users/:id/show/edit", EventUserLive.Show, :edit
+      #  paymentplans
+        live "/payment_plans", PaymentPlanLive.Index, :index
+        live "/payment_plans/new", PaymentPlanLive.Index, :new
+        live "/payment_plans/:id/edit", PaymentPlanLive.Index, :edit
+
+        live "/payment_plans/:id", PaymentPlanLive.Show, :show
+        live "/payment_plans/:id/show/edit", PaymentPlanLive.Show, :edit
 
       end
 
