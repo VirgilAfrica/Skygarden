@@ -7,7 +7,7 @@ defmodule Skygarden.EventBulkMessages do
   alias Skygarden.Repo
 
   alias Skygarden.EventBulkMessages.EventBulkMessage
-  
+  # add Alias Skygarden.Notify
 
   @doc """
   Returns the list of event_bulk_messages.
@@ -21,6 +21,76 @@ defmodule Skygarden.EventBulkMessages do
   def list_event_bulk_messages do
     Repo.all(EventBulkMessage)
   end
+
+
+  @doc """
+  Returns the list of event_bulk_messages.
+
+  ## Examples
+
+      iex> list_event_bulk_messages()
+      [%EventBulkMessage{}, ...]
+
+  """
+  def list_event_bulk_messages_for_event(id)do
+    from(ebm in EventBulkMessage,
+      where: ebm.event_id == ^id,
+      select: ebm
+    )
+    |> Repo.all()
+    |> Repo.preload(:ticket_type)
+  end
+
+  @doc """
+  Returns the list of event_bulk_messages.
+
+  ## Examples
+
+      iex> list_event_bulk_messages()
+      [%EventBulkMessage{}, ...]
+
+  """
+  def send_bulk_messages(event_bulk_message, tickets, "Email")do
+    Enum.each(tickets, fn ticket ->
+
+      Notify.send_bulk_email(event_bulk_message.text, ticket.user.email, ticket.id)
+      # IO.puts("Sending email to #{ticket.email} with subject: #{event_bulk_message.subject}")
+    end)
+
+    update_event_bulk_message(event_bulk_message, %{
+      sent: true,
+      number_of_users_sent_to: length(tickets)
+    })
+
+    :ok
+  end
+
+   @doc """
+    Sends Bulk mesages
+
+  ## Examples
+
+      iex> list_event_bulk_messages()
+      [%EventBulkMessage{}, ...]
+
+  """
+  def send_bulk_messages(event_bulk_message, tickets, "SMS")do
+    Enum.each(tickets, fn ticket ->
+      Notify.send_sms(
+        event_bulk_message.text,
+        ticket.user.phone_number
+        )
+    end)
+
+    update_event_bulk_message(event_bulk_message, %{
+      sent: true,
+      number_of_users_sent_to: length(tickets)
+    })
+  end
+
+
+
+
 
   @doc """
   Gets a single event_bulk_message.
@@ -36,7 +106,10 @@ defmodule Skygarden.EventBulkMessages do
       ** (Ecto.NoResultsError)
 
   """
-  def get_event_bulk_message!(id), do: Repo.get!(EventBulkMessage, id)
+  def get_event_bulk_message!(id), do:
+  Repo.get!(
+    EventBulkMessage, id
+    )
 
   @doc """
   Creates a event_bulk_message.
