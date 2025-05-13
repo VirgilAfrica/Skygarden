@@ -66,7 +66,6 @@ defmodule Skygarden.EventUsers do
     )
   end
 
-  end
 
   @doc """
   Returns the list of event_users_for a user.
@@ -105,27 +104,11 @@ defmodule Skygarden.EventUsers do
       ** (Ecto.NoResultsError)
 
   """
-
-  def get_event_user!(id) do
+  def get_event_user!(id)do
     Repo.get!(EventUser, id)
     |> Repo.preload(:user)
   end
 
-  @doc """
-  Gets a single event_user.
-
-  Raises `Ecto.NoResultsError` if the Event user does not exist.
-
-  ## Examples
-
-      iex> get_event_user!(123)
-      %EventUser{}
-
-      iex> get_event_user!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_event_user!(id), do: Repo.get!(EventUser, id)
 
   @doc """
   Creates a event_user.
