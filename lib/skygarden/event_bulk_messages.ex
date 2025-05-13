@@ -7,6 +7,7 @@ defmodule Skygarden.EventBulkMessages do
   alias Skygarden.Repo
 
   alias Skygarden.EventBulkMessages.EventBulkMessage
+  
 
   @doc """
   Returns the list of event_bulk_messages.
