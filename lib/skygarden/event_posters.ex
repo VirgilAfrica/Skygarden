@@ -22,6 +22,24 @@ defmodule Skygarden.EventPosters do
   end
 
   @doc """
+  Returns the list of event_posters.
+
+  ## Examples
+
+      iex> list_event_posters()
+      [%EventPoster{}, ...]
+
+  """
+
+  def list_event_posters_for_event(event_id)do
+    Repo.all(
+      from ep in EventPoster,
+        where: ep.event_id == ^event_id
+    )
+    
+  end
+
+  @doc """
   Gets a single event_poster.
 
   Raises `Ecto.NoResultsError` if the Event poster does not exist.
