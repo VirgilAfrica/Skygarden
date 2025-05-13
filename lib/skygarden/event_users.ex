@@ -7,6 +7,8 @@ defmodule Skygarden.EventUsers do
   alias Skygarden.Repo
 
   alias Skygarden.EventUsers.EventUser
+  alias Skygarden.Events.Event
+  alias Skygarden.Accounts.User
 
   @doc """
   Returns the list of event_users.
@@ -19,6 +21,94 @@ defmodule Skygarden.EventUsers do
   """
   def list_event_users do
     Repo.all(EventUser)
+  end
+
+  @doc """
+  Returns the list of event_users_for a user.
+
+  ## Examples
+
+      iex> list_event_users()
+      [%EventUser{}, ...]
+
+  """
+  def list_event_users_for_a_user(event_id)do
+    Repo.all(
+      from(
+        eu in EventUser,
+        where: eu.event_id == ^event_id
+      )
+    )
+    |> Repo.preload(:user)
+  end
+
+
+  @doc """
+  Returns the list of event_users_for a user.
+
+  ## Examples
+
+      iex> list_event_users()
+      [%EventUser{}, ...]
+
+  """
+
+  def list_admin_user_ids_for_event(event_id)do
+    Repo.all(
+      from(
+        e in EventUser,
+        where: e.event_id == ^event_id,
+        join: u in User,
+        on: u.id == e.user_id,
+        where: u.role == "admin",
+        select: u.id
+      )
+    )
+  end
+
+  end
+
+  @doc """
+  Returns the list of event_users_for a user.
+
+  ## Examples
+
+      iex> list_event_users()
+      [%EventUser{}, ...]
+
+  """
+
+  def list_events_for_a_user(user_id)do
+    Repo.all(
+      from(
+        e in EventUser,
+        where: e.user_id == ^user_id,
+        join: ev in Event,
+        on: ev.id == e.event_id,
+        select: ev,
+        distinct: true
+      )
+    )
+  end
+
+  @doc """
+  Gets a single event_user.
+
+  Raises `Ecto.NoResultsError` if the Event user does not exist.
+
+  ## Examples
+
+      iex> get_event_user!(123)
+      %EventUser{}
+
+      iex> get_event_user!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+
+  def get_event_user!(id) do
+    Repo.get!(EventUser, id)
+    |> Repo.preload(:user)
   end
 
   @doc """
