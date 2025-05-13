@@ -23,7 +23,7 @@ defmodule SkygardenWeb.EventBulkMessageLive.Index do
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Event bulk message")
-    |> assign(:event_bulk_message, %EventBulkMessage{})
+    |> assign(:event_bulk_message, EventBulkMessage.get_event_bulk_message!(id))
   end
 
   defp apply_action(socket, :index, _params) do

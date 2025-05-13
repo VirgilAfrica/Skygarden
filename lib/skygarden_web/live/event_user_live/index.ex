@@ -6,7 +6,11 @@ defmodule SkygardenWeb.EventUserLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :event_users, Events.list_event_users())}
+    {:ok, stream(socket,
+    :event_users,
+    Events.list_event_users(
+      socket.assigns.current_user.id
+    ))}
   end
 
   @impl true
