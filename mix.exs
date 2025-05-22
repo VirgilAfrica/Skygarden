@@ -63,6 +63,7 @@ defmodule Skygarden.MixProject do
       {:bandit, "~> 1.5"},
       {:number, "~> 1.0"},
       {:oban, "~> 2.17"},
+      {:timex, "~> 3.7"},
       {:secure_random, "~> 0.5"},
       {:scrivener_ecto, "~> 2.0"},
     ]
