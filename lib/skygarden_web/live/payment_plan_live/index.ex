@@ -1,12 +1,23 @@
-defmodule SkygardenWeb.PaymentPlanLive.Index do
-  use SkygardenWeb, :live_view
+defmodule SkygardenWeb.Payment_PlanLive.Index do
+  use SkygardenWeb, :super_admin_live_view
 
-  alias Skygarden.Payments
-  alias Skygarden.Payments.PaymentPlan
+  alias Skygarden.Payment_Plans
+  alias Skygarden.PaymentPlans.Paymentplan
+  alias Skygarden.Accounts
+  alias Skygarden.Reminders
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, stream(socket, :payment_plans, Payments.list_payment_plans())}
+  def mount(_params, session, socket) do
+    current_user =
+      case session["user_token"] do
+        nil -> nil
+        token -> Accounts.get_user_by_session_token(token)
+      end
+
+    {:ok,
+     socket
+     |> stream(:payment_plans, Payment_Plans.list_payment_plans())
+     |> assign(current_user: current_user)}
   end
 
   @impl true
@@ -16,32 +27,32 @@ defmodule SkygardenWeb.PaymentPlanLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit Payment plan")
-    |> assign(:payment_plan, Payments.get_payment_plan!(id))
+    |> assign(:page_title, "Edit Payment  plan")
+    |> assign(:payment__plan, Payment_Plans.get_payment__plan!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New Payment plan")
-    |> assign(:payment_plan, %PaymentPlan{})
+    |> assign(:page_title, "New Payment  plan")
+    |> assign(:payment__plan, %Paymentplan{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Listing Payment plans")
-    |> assign(:payment_plan, nil)
+    |> assign(:payment__plan, nil)
   end
 
   @impl true
-  def handle_info({SkygardenWeb.PaymentPlanLive.FormComponent, {:saved, payment_plan}}, socket) do
-    {:noreply, stream_insert(socket, :payment_plans, payment_plan)}
+  def handle_info({SkygardenWeb.Payment_PlanLive.FormComponent, {:saved, payment__plan}}, socket) do
+    {:noreply, stream_insert(socket, :payment_plans, payment__plan)}
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    payment_plan = Payments.get_payment_plan!(id)
-    {:ok, _} = Payments.delete_payment_plan(payment_plan)
+    payment__plan = Payment_Plans.get_payment__plan!(id)
+    {:ok, _} = Payment_Plans.delete_payment__plan(payment__plan)
 
-    {:noreply, stream_delete(socket, :payment_plans, payment_plan)}
+    {:noreply, stream_delete(socket, :payment_plans, payment__plan)}
   end
 end

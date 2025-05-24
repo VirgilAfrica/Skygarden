@@ -1,29 +1,40 @@
 defmodule SkygardenWeb.TicketPaymentLive.Index do
-  use SkygardenWeb, :live_view
+  use SkygardenWeb, :super_admin_live_view
 
+  alias Skygarden.TicketPayments
+  alias Skygarden.Tickets
   alias Skygarden.Events
-  alias Skygarden.Events.TicketPayment
+  alias Skygarden.EventUsers
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :ticket_payments, Events.list_ticket_payments())}
+    {:ok, socket}
   end
 
   @impl true
-  def handle_params(params, _url, socket) do
-    {:noreply, apply_action(socket, socket.assigns.live_action, params)}
-  end
+  def handle_params(%{"id" => id} = params, _url, socket) do
+    %{
+      entries: entries,
+      page_number: page_number,
+      page_size: page_size,
+      total_entries: total_entries,
+      total_pages: total_pages
+    } =
+      TicketPayments.list_ticket_payments_for_ticket(id, params)
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
-    socket
-    |> assign(:page_title, "Edit Ticket payment")
-    |> assign(:ticket_payment, Events.get_ticket_payment!(id))
-  end
+    ticket = Tickets.get_ticket!(id)
+    event = Events.get_event!(ticket.event_id)
 
-  defp apply_action(socket, :new, _params) do
-    socket
-    |> assign(:page_title, "New Ticket payment")
-    |> assign(:ticket_payment, %TicketPayment{})
+    {:noreply,
+     socket
+     |> assign(:page_number, page_number)
+     |> assign(:ticket, ticket)
+     |> assign(:page_size, page_size)
+     |> assign(:total_entries, total_entries)
+     |> assign(:show_ticket_payments, show_ticket_payments(socket.assigns.current_user, event))
+     |> assign(:total_pages, total_pages)
+     |> stream(:ticket_payments, entries, reset: true)
+     |> apply_action(socket.assigns.live_action, params)}
   end
 
   defp apply_action(socket, :index, _params) do
@@ -37,11 +48,16 @@ defmodule SkygardenWeb.TicketPaymentLive.Index do
     {:noreply, stream_insert(socket, :ticket_payments, ticket_payment)}
   end
 
-  @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    ticket_payment = Events.get_ticket_payment!(id)
-    {:ok, _} = Events.delete_ticket_payment(ticket_payment)
+  defp format_date(date) do
+    Timex.format!(date, "{WDshort} {Mshort} {D}, {YYYY}")
+  end
 
-    {:noreply, stream_delete(socket, :ticket_payments, ticket_payment)}
+  defp show_ticket_payments(user, event) do
+    if user.super_admin == true or user.id == event.user_id or
+         user.id in EventUsers.list_admin_user_ids_for_event(event.id) do
+      true
+    else
+      false
+    end
   end
 end

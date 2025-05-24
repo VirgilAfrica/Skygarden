@@ -65,14 +65,6 @@ defmodule Skygarden.EventBulkMessages do
     :ok
   end
 
-   @doc """
-      Sends Bulk mesages
-
-      ## Examples
-
-      iex> list_event_bulk_messages()
-      [%EventBulkMessage{}, ...]
-  """
   def send_bulk_messages(event_bulk_message, tickets, "SMS")do
     Enum.each(tickets, fn ticket ->
       Notify.send_sms(

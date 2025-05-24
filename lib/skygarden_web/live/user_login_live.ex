@@ -128,3 +128,5 @@ defmodule SkygardenWeb.UserLoginLive do
     {:ok, assign(socket, form: form), temporary_assigns: [form: form]}
   end
 end
+# create super admin struct
+
