@@ -20,3 +20,5 @@ defmodule SkygardenWeb.Dashboard.Index do
     """
   end
 end
+
+# Updated the changes
