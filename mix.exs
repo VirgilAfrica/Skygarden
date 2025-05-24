@@ -66,6 +66,8 @@ defmodule Skygarden.MixProject do
       {:timex, "~> 3.7"},
       {:secure_random, "~> 0.5"},
       {:scrivener_ecto, "~> 2.0"},
+      {:dotenvy, "~> 0.8.0", runtime: Mix.env() == :dev}
+
     ]
   end
 

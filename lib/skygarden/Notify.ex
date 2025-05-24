@@ -4,7 +4,7 @@ defmodule Skygarden.Notify do
   def api_url(), do: "https://api.tiaraconnect.io/api/messaging/sendsms"
 
   def sms_headers(),
-    do: [
+    do : [
       {
         "Content-Type",
         "application/json"
