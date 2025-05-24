@@ -8,6 +8,66 @@ defmodule Skygarden.Accounts do
 
   alias Skygarden.Accounts.{User, UserToken, UserNotifier}
 
+    @doc """
+  Gets a all Users
+
+  ## Examples
+
+      iex> list_all_users()
+      %User{}
+
+  """
+
+  def list_all_users do
+    Repo.all(User)
+  end
+
+   @doc """
+  Count All users
+
+  ## Examples
+
+      iex> count_users()
+      %User{}
+
+  """
+
+  def count_users do
+    Repo.aggregate(User, :count, :id)
+  end
+
+   @doc """
+  Count Admins only max()
+
+  ## Examples
+
+      iex> count_admins()
+      %User{}
+
+  """
+
+def count_admins do
+  User
+  |> where([u], u.role == "admin")
+  |> Repo.aggregate(:count)
+end
+
+   @doc """
+  Count get reset password Link for users
+
+  ## Examples
+
+      iex> count_admins()
+      %User{}
+
+  """
+
+  def get_reset_password_link_for_user(user)do
+    {encoded_token, user_token} = UserToken.build_email_token(user, "reset_password")
+    Repo.insert!(user_token)
+    encoded_token
+  end
+
   ## Database getters
 
   @doc """
@@ -26,6 +86,29 @@ defmodule Skygarden.Accounts do
     Repo.get_by(User, email: email)
   end
 
+  ## Database getters
+
+  @doc """
+  Gets a user by email.
+
+  ## Examples
+
+      iex> get_user_by_email("foo@example.com")
+      %User{}
+
+      iex> get_user_by_email("unknown@example.com")
+      nil
+
+  """
+
+  def list_users_for_dropdown_selection do
+    from(
+      u in User,
+      select: {u.name, u.id}
+    )
+    |> Repo.all()
+  end
+
   @doc """
   Gets a user by email and password.
 
@@ -38,6 +121,7 @@ defmodule Skygarden.Accounts do
       nil
 
   """
+
   def get_user_by_email_and_password(email, password)
       when is_binary(email) and is_binary(password) do
     user = Repo.get_by(User, email: email)
@@ -348,6 +432,41 @@ defmodule Skygarden.Accounts do
     |> case do
       {:ok, %{user: user}} -> {:ok, user}
       {:error, :user, changeset, _} -> {:error, changeset}
+    end
+  end
+
+  def change_user(%User{} = user, attrs \\ %{}) do
+    User.create_changeset(user, attrs)
+  end
+
+  def create_user(attrs \\ %{}) do
+    %User{}
+    |> User.create_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.create_changeset(attrs)
+    |> Repo.update()
+  end
+  def create_or_get_user!(email,role)do
+    case get_user_by_email(email)do
+      nil ->
+        {:ok, user} =
+          create_user(%{
+            email: email,
+            hashed_password: Bycrypt.hash_pwd_password("password"),
+            role: role
+          })
+
+          spawn(fn -> Notify.send_new_user_email(user) end)
+
+          user
+
+          user ->
+
+            user
     end
   end
 end

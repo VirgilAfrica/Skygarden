@@ -1,13 +1,18 @@
 defmodule SkygardenWeb.SubAccountLive.Index do
-  use SkygardenWeb, :live_view
+  use SkygardenWeb, :super_admin_live_view
 
-  alias Skygarden.Payments
-  alias Skygarden.Payments.SubAccount
+  alias Skygarden.SubAccounts
+  alias Skygarden.SubAccounts.SubAccount
   alias Skygarden.Accounts
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :sub_accounts, Payments.list_sub_accounts())}
+    users_for_dropdown_selection = Accounts.list_users_for_dropdown_selection()
+
+    {:ok,
+     socket
+     |> assign(:users_for_dropdown_selection, users_for_dropdown_selection)
+     |> stream(:sub_accounts, SubAccounts.list_sub_accounts())}
   end
 
   @impl true
@@ -18,7 +23,7 @@ defmodule SkygardenWeb.SubAccountLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Sub account")
-    |> assign(:sub_account, Payments.get_sub_account!(id))
+    |> assign(:sub_account, SubAccounts.get_sub_account!(id))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -40,8 +45,8 @@ defmodule SkygardenWeb.SubAccountLive.Index do
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    sub_account = Payments.get_sub_account!(id)
-    {:ok, _} = Payments.delete_sub_account(sub_account)
+    sub_account = SubAccounts.get_sub_account!(id)
+    {:ok, _} = SubAccounts.delete_sub_account(sub_account)
 
     {:noreply, stream_delete(socket, :sub_accounts, sub_account)}
   end

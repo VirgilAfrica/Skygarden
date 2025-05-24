@@ -66,6 +66,14 @@ defmodule SkygardenWeb do
       unquote(html_helpers())
     end
   end
+  def super_admin_live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {SkygardenWeb.Layouts, :super_admin}
+
+      unquote(html_helpers())
+    end
+  end
 
   def live_view do
     quote do

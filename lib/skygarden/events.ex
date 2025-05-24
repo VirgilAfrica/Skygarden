@@ -4,6 +4,7 @@ defmodule Skygarden.Events do
   """
 
   import Ecto.Query, warn: false
+  alias Skygarden.TicketTypes.TicketType
   alias Skygarden.Repo
 
   alias Skygarden.Events.Event
@@ -21,6 +22,49 @@ defmodule Skygarden.Events do
     Repo.all(Event)
   end
 
+  def list_events_by_user(_user_id, _, true) do
+    Repo.all(from(e in Event))
+  end
+
+  def list_events_for_a_user(user_id, "admin", false)do
+    (Repo.all(from(
+      e in Event,
+      where: e.user_id == ^user_id
+    )) ++
+    EventUsers.list_events_for_a_user(user_id))
+    |> Enum.uniq()
+  end
+
+  def list_events_for_a_user(_user_id, "scanner", false)do
+    []
+  end
+
+  def list_active_events_coming_up do
+    Repo.all(
+      from  e in Event,
+      where: e.date > ^DateTime.utc_now() and e.active == true,
+      left_join: tp in TicketType,
+      on: tp.event_id == e.id,
+      where: tp.active == true,
+      order_by: [asc: e.date]
+    )
+  end
+
+  def list_event_name_for_a_date("")do
+    []
+  end
+
+  def list_events_for_a_date(nil)do
+    []
+  end
+
+  def list_events_for_a_date(date)do
+    Repo.all(
+      from e in Event,
+      where: e.date == ^date,
+      select: e.name
+    )
+  end
   @doc """
   Gets a single event.
 
@@ -36,6 +80,10 @@ defmodule Skygarden.Events do
 
   """
   def get_event!(id), do: Repo.get!(Event, id)
+
+  def get_event_by_slug!(slug)do
+    Repo.get_by!(Event, slug: slug)
+  end
 
   @doc """
   Creates a event.
