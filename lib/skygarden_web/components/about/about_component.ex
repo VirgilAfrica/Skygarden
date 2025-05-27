@@ -33,14 +33,14 @@ defmodule SkygardenWeb.About.AboutComponent do
     <section class="py-16">
       <div class="max-w-[90%] mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-          <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <div class="bg-white p-6">
             <h2 class="text-[24px] md:text-[32px] font-bold text-gray-900 mb-6">Our Mission</h2>
             <p class="text-gray-600 leading-relaxed text-[16px] md:text-[18px]">
            At Sky Tickets, we believe that meaningful experiences bring people together. Our mission is to make event discovery and attendance seamless, allowing everyone to connect with their communities and passions.
           We're dedicated to supporting event creators and attendees alike, fostering a vibrant ecosystem where unforgettable moments are just a click away.
             </p>
           </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <div class="bg-white p-6">
             <h2 class="text-[24px] md:text-[32px] font-bold text-gray-900 mb-6">Our Vision</h2>
             <p class="text-gray-600 leading-relaxed text-[16px] md:text-[18px]">
               Sky Tickets was born from a simple observation: finding and attending great events should be easy and exciting. Founded by a team of event enthusiasts, we set out to create a platform that removes barriers between people and experiences.
@@ -91,7 +91,7 @@ defmodule SkygardenWeb.About.AboutComponent do
           <%= for member <- team_data() do %>
             <div class=" ">
               <div class=" relative">
-                <img src={member.avatar} alt={member.name} class="w-full h-full  object-cover rounded-full" />
+                <img src={member.avatar} alt={member.name} class="w-80 h-auto object-cover rounded-full" />
               </div>
               <div class="p-6 text-center">
                 <h3 class="text-xl font-semibold text-gray-900 mb-1"><%= member.name %></h3>
@@ -141,19 +141,19 @@ defmodule SkygardenWeb.About.AboutComponent do
 
       },
       %{
-        name: "Michael Chen",
+        name: "Kiprotich Kimutai",
         position: "CTO",
         avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
 
       },
       %{
-        name: "Emily Rodriguez",
+        name: "Frankie",
         position: "Head of Marketing",
         avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
 
       },
       %{
-        name: "David Park",
+        name: "Josiah",
         position: "Head of Operations",
         avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
 
