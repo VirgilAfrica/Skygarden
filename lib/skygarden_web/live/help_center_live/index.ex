@@ -8,7 +8,7 @@ defmodule SkygardenWeb.HelpCenterLive.Index do
 
   def render(assigns)do
     ~H"""
-    <.help_center_layout />
+
     """
   end
 
