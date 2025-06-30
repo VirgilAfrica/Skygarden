@@ -101,7 +101,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
                 </div>
                 </div>
               </div>
-              <div class="w-full overflow-x-auto grid lg:grid-cols-5 gap-4 w-full place-items-center">
+              <div class="w-full overflow-x-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full place-items-center">
                 <%= for concert <- concert_images() do %>
                   <img src={concert} alt={concert} class="w-full lg:w-56 h-56 rounded-md cursor-pointer" />
                 <% end %>
@@ -126,7 +126,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
                 </div>
                 </div>
               </div>
-              <div class="w-full overflow-x-auto grid lg:grid-cols-5 gap-4 w-full place-items-center">
+              <div class="w-full overflow-x-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full place-items-center">
                 <%= for concert <- concert_images() do %>
                   <img src={concert} alt={concert} class="w-full lg:w-56 h-56 rounded-md cursor-pointer" />
                 <% end %>
@@ -150,7 +150,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
                 </div>
                 </div>
               </div>
-              <div class="w-full overflow-x-auto grid lg:grid-cols-5 gap-4 w-full place-items-center">
+              <div class="w-full overflow-x-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full place-items-center">
                 <%= for concert <- concert_images() do %>
                   <img src={concert} alt={concert} class="w-full lg:w-56 h-56 rounded-md cursor-pointer" />
                 <% end %>
@@ -176,7 +176,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
                 </div>
                 </div>
               </div>
-              <div class="w-full overflow-x-auto grid md:grid-cols-3 lg:grid-cols-5 gap-4 w-full place-items-center">
+              <div class="w-full overflow-x-auto grid grid-cols-1  md:grid-cols-3 lg:grid-cols-5 gap-4 w-full place-items-center">
                 <%= for concert <- concert_images() do %>
                   <img src={concert} alt={concert} class="w-full lg:w-56 h-56 rounded-md cursor-pointer" />
                 <% end %>
@@ -243,7 +243,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
           </div>
           <button class="text-blu">View all events</button>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <%= for event <- events_data() do %>
               <.event_card event={event} />
             <% end %>
@@ -255,7 +255,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
 
     def get_started(assigns)do
       ~H"""
-      <section class="h-[50vh] w-full bg-blue-700 text-white py-20">
+      <section class="h-auto lg:[50vh] w-full bg-blue-700 text-white py-20">
       <div class="max-w-[90%] mx-auto flex flex-col items-center justify-center space-y-4 h-full text-center">
         <h3 class="font-bold text-[32px] md:text-[40px]">Ready to create your own event?</h3>
         <p class="text-[16px] md:text-[18px] lg:max-w-[60%] mx-auto">Whether it's a concert, workshop, or conference, Sky Tickets has everything you need to organize and manage your event.</p>
@@ -431,7 +431,7 @@ defmodule SkygardenWeb.Landing.LandingLayout do
         image: "/images/landing/concert1.png",
         detail_title: "",
         desccription: "",
-        
+
 
       },
       %{

@@ -16,8 +16,6 @@ defmodule SkygardenWeb.LandingLive.Index do
     <.navbar />
     <.landing_layout/>
     <.footer/>
-    <.navbar />
-    <.footer />
     """
   end
 end
