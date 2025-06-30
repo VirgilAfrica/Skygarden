@@ -125,6 +125,8 @@ defmodule SkygardenWeb do
       import SkygardenWeb.About.AboutComponent
       import SkygardenWeb.HelpCenter.HelpCenterComponent
       import SkygardenWeb.Contact.Directions
+      import SkygardenWeb.Resources.HelpCenterOmponent
+      import SkygardenWeb.Resources.OrganisersComponent
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
