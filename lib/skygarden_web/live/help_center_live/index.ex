@@ -1,15 +1,15 @@
-defmodule SkygardenWeb.HelpCenterLive,Index do
-  use , :live_view
+defmodule SkygardenWeb.HelpCenterLive.Index do
+  use SkygardenWeb, :live_view
 
-  @impl Phoenix.LiveView
-  def render(assigns) do
+  @impl true
+  def mount(_params, _session, socket) do
+    {:ok, socket}
+  end
+
+  def render(assigns)do
     ~H"""
 
     """
   end
 
-  @impl Phoenix.LiveView
-  def mount( params,  session,  socket) do
-    {:ok, socket}
-  end
 end

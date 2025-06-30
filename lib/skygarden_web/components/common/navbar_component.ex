@@ -28,16 +28,16 @@ defmodule SkygardenWeb.Common.NavbarComponent do
             </li>
              <li class="relative group" id="categories-menu">
               <a href="/categories" class="text-black dark:text-white  hover:text-blue-500 block px-4 py-2 flex items-center">
-                Categories
+                Resources
                 <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M19 9l-7 7-7-7"/>
                 </svg>
               </a>
               <ul class="dropdown-menu absolute left-0 top-6 mt-2 bg-white text-black dark:text-black  text-black rounded shadow-lg min-w-[150px] hidden group-hover:block md:group-hover:block z-50">
-                <li><a href="/categories/help_center" class="block px-4 py-2 hover:bg-blue-100">Music</a></li>
-                <li><a href="/categories/sports" class="block px-4 py-2 hover:bg-blue-100">Sports</a></li>
-                <li><a href="/categories/arts" class="block px-4 py-2 hover:bg-blue-100">Arts</a></li>
+                <li><a href="/Resources/help_center" class="block px-4 py-2 hover:bg-blue-100">Help Center</a></li>
+                <li><a href="/resources/info" class="block px-4 py-2 hover:bg-blue-100">Information</a></li>
+                <li><a href="/resources/contact" class="block px-4 py-2 hover:bg-blue-100">Contact</a></li>
               </ul>
             </li>
           </ul>
