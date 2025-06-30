@@ -6,8 +6,16 @@ defmodule SkygardenWeb.ContactLive.FormComponent do
   @impl true
   def render(assigns) do
     ~H"""
-    <div>
-      <.header>
+    <section class="w-full mx-auto">
+      <div class="flex flex-col items-center justify-center py-8 max-w-[90%] mx-auto">
+        <h2 class="text-[32px] md:text[56px] font-bold mb-4">Contact Form</h2>
+        <p class="text-gray-600 mb-6 text-[16px] md:text-[18px]">Have questions or need assistance? Our team is here to help you with any inquiries you may have.</p>
+      </div>
+      <div class ="">
+
+      </div>
+
+      <%!-- <.header>
         {@title}
         <:subtitle>Use this form to manage contact records in your database.</:subtitle>
       </.header>
@@ -28,8 +36,10 @@ defmodule SkygardenWeb.ContactLive.FormComponent do
         <:actions>
           <.button phx-disable-with="Saving...">Save Contact</.button>
         </:actions>
-      </.simple_form>
-    </div>
+      </.simple_form> --%>
+
+
+    </section>
     """
   end
 

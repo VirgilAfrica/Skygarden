@@ -109,7 +109,7 @@ defmodule SkygardenWeb.About.AboutComponent do
 
   def get_started(assigns) do
     ~H"""
-    <section class="h-[50vh] w-full bg-blue-700 text-white py-20">
+    <section class="h-auto lg:[50vh] w-full bg-blue-700 text-white py-20">
       <div class="max-w-[90%] mx-auto flex flex-col items-center justify-center space-y-4 h-full text-center">
         <h3 class="font-bold text-[32px] md:text-[40px]">Ready to create your own event?</h3>
         <p class="text-[16px] md:text-[18px] max-w-2xl">
