@@ -1,4 +1,5 @@
 defmodule SkygardenWeb.Router do
+  alias SkygardenWeb.BrowseEvents
   alias SkygardenWeb.PaymentSuccessLive
   alias SkygardenWeb.BrowseEventsLive.DetailsLive
   use SkygardenWeb, :router
@@ -31,8 +32,15 @@ defmodule SkygardenWeb.Router do
     live "/browse-events/:id/buy-tickets", BuyTicketsLive, :index
     live "/browse-events/:id/checkout", CheckoutLive, :index
     live "/browse-events/:id/paymentsuccess", PaymentSuccessLive, :index
+    live "/browse_events_by_category", BrowseEventsByCategoryLive.Index, :index
+    live "/about", AboutLive.Index, :index
+    # Contact routes
+    live "/contacts", ContactLive.Index, :index
+    live "/contacts/new", ContactLive.Index, :new
+    live "/contacts/:id/edit", ContactLive.Index, :edit
 
-
+    live "/contacts/:id", ContactLive.Show, :show
+    live "/contacts/:id/show/edit", ContactLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

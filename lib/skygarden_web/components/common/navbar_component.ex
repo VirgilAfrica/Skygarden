@@ -11,7 +11,7 @@ defmodule SkygardenWeb.Common.NavbarComponent do
         </button>
         <div id="navbar-menu" class="hidden md:flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 fixed md:static top-0 left-0 w-full md:w-auto bg-[#0f0f0f] md:bg-transparent z-50 ">
           <ul class="flex flex-col md:flex-row w-full md:w-auto">
-            <li><a href="/events" class="text-black dark:text-white hover:text-blue-500 block px-4 py-2">Browse Events</a></li>
+            <li><a href="/browse_events_by_category" class="text-black dark:text-white hover:text-blue-500 block px-4 py-2">Browse Events</a></li>
             <li class="relative group" id="categories-menu">
               <a href="/categories" class="text-black dark:text-white  hover:text-blue-500 block px-4 py-2 flex items-center">
                 Categories
